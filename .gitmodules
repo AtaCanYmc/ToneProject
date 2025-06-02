@@ -1,0 +1,6 @@
+[submodule "toneOS"]
+	path = toneOS
+	url = https://github.com/AtaCanYmc/toneOS
+[submodule "ToneTerminal"]
+	path = ToneTerminal
+	url = https://github.com/AtaCanYmc/ToneTerminal
