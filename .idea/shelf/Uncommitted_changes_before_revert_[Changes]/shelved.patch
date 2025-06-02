@@ -1,0 +1,15 @@
+Index: .gitmodules
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[submodule \"toneOS\"]\n\tpath = toneOS\n\turl = https://github.com/AtaCanYmc/toneOS\n[submodule \"ToneTerminal\"]\n\tpath = ToneTerminal\n\turl = https://github.com/AtaCanYmc/ToneTerminal\n
+===================================================================
+diff --git a/.gitmodules b/.gitmodules
+--- a/.gitmodules	(revision 01590adf9515baf0c36edd0be556250979f60da9)
++++ b/.gitmodules	(date 1748855838025)
+@@ -1,6 +1,0 @@
+-[submodule "toneOS"]
+-	path = toneOS
+-	url = https://github.com/AtaCanYmc/toneOS
+-[submodule "ToneTerminal"]
+-	path = ToneTerminal
+-	url = https://github.com/AtaCanYmc/ToneTerminal
