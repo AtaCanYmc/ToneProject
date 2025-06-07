@@ -38,7 +38,7 @@ def save_ble_device_nearby(device: BLEDevice) -> bool:
     return False
 
 
-# === Sync kullanımı için BLE sarmalayıcı ===
+# === Sync ===
 def is_ble_device_connected_sync(device_name: str) -> bool:
     return asyncio.run(is_ble_device_nearby(device_name))
 
@@ -79,11 +79,9 @@ def handle_notification(sender: BleakGATTCharacteristic, data: bytearray):
         json_data = json.loads(str_data)
         log(f"From {sender.uuid}: {json_data}", "TONE")
         if operating_system == "Darwin":  # macOS
-            print(json_data)
-            # set_volume_mac(int(json_data.get("value", 0)))
-        elif operating_system == "Windows":
-            print(json_data)
-            # set_volume_windows(int(json_data.get("value", 0)))
+            set_volume_mac(int(json_data.get("value", 0)))
+        elif operating_system == "nt":
+            set_volume_windows(int(json_data.get("value", 0)))
 
     except Exception as e:
         log(f"Error decoding data: {e}", "ERROR")
