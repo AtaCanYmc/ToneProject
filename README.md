@@ -96,5 +96,14 @@ pip install -r libs/ToneTerminal/requirements.txt
 ./ToneProject
 ```
 
+#### Using Python:
+```sh
+python {entrypoint}
+```
+
+---
+
+[⬆ Return to Top](#toneproject)
+
 
 
