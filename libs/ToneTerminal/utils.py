@@ -67,7 +67,7 @@ def get_volume_windows():
 def get_volume_data_as_int(os_name: str) -> int:
     if os_name == "Darwin":
         current_volume = get_volume_mac()
-    elif os_name == "Windows":
+    elif os_name == "nt":
         current_volume = get_volume_windows()
     else:
         current_volume = 50  # fallback
