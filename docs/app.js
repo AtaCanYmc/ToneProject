@@ -349,6 +349,19 @@ function initCopyButtons() {
   });
 }
 
+function initMobileNav() {
+  const siteNav = document.getElementById("siteNav");
+  if (!siteNav) return;
+
+  siteNav.querySelectorAll(".nav-link").forEach(link => {
+    link.addEventListener("click", () => {
+      if (typeof siteNav.hidePopover === "function" && siteNav.matches(":popover-open")) {
+        siteNav.hidePopover();
+      }
+    });
+  });
+}
+
 // ==========================================================================
 // DOM Initialization
 // ==========================================================================
@@ -357,4 +370,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initDocTabs();
   initPinoutSwitcher();
   initCopyButtons();
+  initMobileNav();
 });
