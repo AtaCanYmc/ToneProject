@@ -43,11 +43,11 @@ const MODES = [
     minValue: 0,
     maxValue: 100,
     currentValue: 55,
-    r: 90,
-    g: 240,
-    b: 255,
-    colorHex: "#06b6d4",
-    glowRgba: "rgba(6, 182, 212, 0.45)",
+    r: 255,
+    g: 130,
+    b: 20,
+    colorHex: "#f97316",
+    glowRgba: "rgba(249, 115, 22, 0.45)",
     freqRange: "4 kHz – 16 kHz (High End)"
   }
 ];

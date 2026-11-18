@@ -24,9 +24,10 @@ void setup() {
     tne.begin();
 
     // Configure parameter modes: index, name, minValue, maxValue, r, g, b, brightness
-    tne.setMode(0, "Volume", 0, 100, 255, 255, 155, 150);
-    tne.setMode(1, "Bass", 0, 100, 122, 50, 245, 150);
-    tne.setMode(2, "Treble", 0, 100, 90, 240, 255, 150);
+    // Design spec: White for Volume, Purple for Bass, Orange for Treble
+    tne.setMode(0, "Volume", 0, 100, 255, 255, 180, 150); // White
+    tne.setMode(1, "Bass", 0, 100, 138, 43, 226, 150);    // Purple
+    tne.setMode(2, "Treble", 0, 100, 255, 130, 20, 150);  // Orange
     tne.setCurrentMode(0);
 
     delay(1000);

@@ -13,6 +13,10 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python)](libs/ToneTerminal)
 [![Docs](https://img.shields.io/badge/Docs-Architecture%20%26%20Guide-green)](docs/)
 
+<br />
+
+<img src="assets/renders/tone-hero-desktop.jpg" width="100%" alt="Tone Tactile Sound Controller Desktop Setup" />
+
 </div>
 
 ---
@@ -85,9 +89,9 @@ Tapping down on the controller cycles between three independent audio parameters
 
 | Mode Index | Parameter | LED Feedback Color | Frequency Target | Description |
 | :---: | :--- | :--- | :--- | :--- |
-| **0** | **Volume** | Warm White (`#FFFF9B`) | Master Gain | Controls master OS audio level. |
-| **1** | **Bass** | Deep Purple (`#7A32F5`) | $32\text{ Hz} - 250\text{ Hz}$ | Equalization for low-end punch and kick drums. |
-| **2** | **Treble** | Electric Cyan (`#5AF0FF`) | $4\text{ kHz} - 16\text{ kHz}$ | Equalization for acoustic clarity and vocal air. |
+| **0** | **Volume** | Warm White (`#FFFDF0`) | Master Gain | Controls master OS audio level. |
+| **1** | **Bass** | Deep Purple (`#8B5CF6`) | $32\text{ Hz} - 250\text{ Hz}$ | Equalization for low-end punch and kick drums. |
+| **2** | **Treble** | Vibrant Orange (`#F97316`) | $4\text{ kHz} - 16\text{ kHz}$ | Equalization for acoustic clarity and vocal air. |
 
 ---
 
@@ -99,6 +103,13 @@ ToneProject/
 │   ├── tone-logo.svg           # High-resolution vector brand mark
 │   ├── tone-logo.png           # 800x800 rasterized square logo
 │   ├── tone-technical-drawing.png # 1600x1129 Sheet DM-495 orthographic CAD drawing
+│   ├── renders/                # High-resolution 3D renders from graduation catalog
+│   │   ├── tone-hero-desktop.jpg
+│   │   ├── tone-modes-press.jpg
+│   │   ├── tone-slide-rotate.jpg
+│   │   ├── tone-app-ringbutton.jpg
+│   │   ├── tone-dual-led-variants.jpg
+│   │   └── designer-sezin-sozden.jpg
 │   └── pdf/                    # Source graduation project artifacts
 │       ├── tone-technical-design.pdf # Sheet DM-495 engineering drawing (Scale 1:1)
 │       ├── tone-user-manual.pdf
@@ -206,8 +217,10 @@ Comprehensive engineering and design specifications are maintained in the [`docs
 
 ---
 
-## Credits & License
+## Credits & Academic Attribution
 
-- **Industrial Design & Product Concept**: **Sezin Sözden** ([sezinsozden@gmail.com](mailto:sezinsozden@gmail.com) · [Portfolio](https://sezinsozden.my.canva.site/portfolio))
+- **Industrial Design & Product Concept**: **Sezin Sözden** ([sezinsozden@gmail.com](mailto:sezinsozden@gmail.com) · [Graduation Catalog](https://www.ffadgrad.ieu.edu.tr/id-projects/sezin-sozden) · [Portfolio](https://sezinsozden.my.canva.site/portfolio))
+  - *Graduation Project 2025* · **İzmir University of Economics** (Faculty of Fine Arts and Design, Department of Industrial Design)
+  - *Academic Advisors*: Asst. Prof. Can ÖZCAN, Lect. Özgür Deniz ÇETİN, Res. Asst. Anıl Dinç DEMİRBİLEK
 - **Software & Firmware Architecture**: **Ata Can Yaymacı** ([@AtaCanYmc](https://github.com/AtaCanYmc) · [atacanymc@gmail.com](mailto:atacanymc@gmail.com))
 - **Source Code License**: [MIT License](https://opensource.org/licenses/MIT) (c) 2026 AtaCanYmc

@@ -21,6 +21,7 @@
         <a href="#simulator" class="nav-link">Simulator</a>
         <a href="#modes" class="nav-link">Sound Modes</a>
         <a href="#hardware" class="nav-link">Hardware</a>
+        <a href="#gallery" class="nav-link">Design Gallery</a>
         <a href="#protocol" class="nav-link">BLE Protocol</a>
         <a href="#documentation" class="nav-link">Documentation</a>
       </nav>
@@ -155,8 +156,8 @@
             <span class="mode-freq-badge">4 kHz – 16 kHz</span>
             <p>High-frequency presence control. Shapes crispness of vocals, cymbal decay, and harmonic brilliance in music tracks.</p>
             <div class="telemetry-values">
-              <div class="tel-cell"><span class="tel-label">LED Color</span><span style="font-size:0.8rem; font-weight:600; color:#06b6d4;">Electric Cyan</span></div>
-              <div class="tel-cell"><span class="tel-label">Hex</span><span style="font-family:var(--font-mono); font-size:0.8rem;">#06B6D4</span></div>
+              <div class="tel-cell"><span class="tel-label">LED Color</span><span style="font-size:0.8rem; font-weight:600; color:#f97316;">Vibrant Orange</span></div>
+              <div class="tel-cell"><span class="tel-label">Hex</span><span style="font-family:var(--font-mono); font-size:0.8rem;">#F97316</span></div>
               <div class="tel-cell"><span class="tel-label">Range</span><span style="font-family:var(--font-mono); font-size:0.8rem;">0 – 100</span></div>
             </div>
           </article>
@@ -337,6 +338,98 @@ pio run -e esp32-c3-devkitm-1</code>
       </div>
     </section>
 
+    <!-- Industrial Design & Graduation Project Gallery -->
+    <section class="content-section" id="gallery">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Industrial Design & Ergonomics</span>
+          <h2>Visual Design & Graduation Gallery</h2>
+          <p>Designed by Sezin Sözden as an Industrial Design graduation project at İzmir University of Economics (FFAD). Explores the tactile form factor, materials, user ergonomics, and optical feedback.</p>
+        </div>
+
+        <div class="academic-badge">
+          <span>🎓 İzmir Ekonomi Üniversitesi · Güzel Sanatlar ve Tasarım Fakültesi (FFAD) · 2025</span>
+          <span>·</span>
+          <a href="https://www.ffadgrad.ieu.edu.tr/id-projects/sezin-sozden" target="_blank" rel="noopener noreferrer">Graduation Catalog Entry &nearr;</a>
+        </div>
+
+        <!-- Official Design Statement -->
+        <div class="statement-box">
+          <div class="statement-col">
+            <h4>Official Design Statement (EN)</h4>
+            <p>Tone is a compact desktop audio controller that redefines the way we interact with sound. At the heart of its design lies an elliptic-shaped control stick, enabling intuitive control over volume, bass, and treble. By rotating the control stick clockwise or counterclockwise, users can precisely adjust sound parameters, while an LED arc visually reflects the intensity level. A single press on the top switches between modes—white for volume, purple for bass, and orange for treble—providing instant visual feedback.</p>
+          </div>
+          <div class="statement-col">
+            <h4>Tasarım Manifestosu (TR)</h4>
+            <p>Tone, sesle etkileşim şeklimizi yeniden tanımlayan kompakt bir masaüstü ses denetleyicisidir. Tasarımının merkezinde, ses, bas ve tiz üzerinde sezgisel kontrol sağlayan eliptik şekilli bir kontrol çubuğu yer alır. Kontrol çubuğunu saat yönünde veya saat yönünün tersine döndürerek kullanıcılar ses parametrelerini hassas bir şekilde ayarlayabilirken, bir LED yayı yoğunluk seviyesini görsel olarak yansıtır. Üst tarafa tek bir basış, ses için beyaz, bas için mor ve tiz için turuncu modlar arasında geçiş yaparak anında görsel geri bildirim sağlar.</p>
+          </div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid">
+          <article class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/renders/tone-hero-desktop.jpg" alt="Tone Desktop Workstation Render" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Desktop Workstation Integration</h3>
+              <p class="gallery-card-desc">Tone positioned alongside a production laptop, casting a soft ambient glow onto the desk via Bluetooth wireless control.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/renders/tone-modes-press.jpg" alt="Tone Mode Selection and Press Gestures" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Tactile Top Press & Modes</h3>
+              <p class="gallery-card-desc">Single push on the concave saddle switches between Treble (Orange), Bass (Purple), and Volume (White) with instant visual LED feedback.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/renders/tone-slide-rotate.jpg" alt="Tone Slide and Rotate Ergonomics" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Slide & Rotate Ergonomics</h3>
+              <p class="gallery-card-desc">Ergonomic palm resting contour enabling natural slide and rotational adjustments across the 0–100 radial intensity scale.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/renders/tone-dual-led-variants.jpg" alt="Tone Purple and Orange LED Arc Variants" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Optical Arc Variants</h3>
+              <p class="gallery-card-desc">Comparison of Bass mode (deep purple) and Treble mode (vibrant orange) optical diffusion through the concealed perimeter channel.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/renders/tone-app-ringbutton.jpg" alt="Tone Mobile App and Chassis Ring Button" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Ecosystem & Mobile App UI</h3>
+              <p class="gallery-card-desc">Chassis ring button paired with the companion mobile application for lighting customization, light sync, and remote audio management.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/tone-technical-drawing.png" alt="Tone Technical CAD Drawing DM-495" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Engineering CAD Blueprint</h3>
+              <p class="gallery-card-desc">Official Sheet DM-495 orthographic projection detailing the 205 mm base, 93.1 mm height stack, and USB-C chassis port.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Comprehensive Embedded Documentation Viewer -->
     <section class="content-section" id="documentation">
       <div class="section-container">
@@ -479,13 +572,22 @@ pio run -d libs/ToneOS -e esp32-c3-devkitm-1</code>
 
         <div class="colophon-grid">
           <div class="credit-card">
-            <span class="credit-role">Industrial Design & Product Concept</span>
-            <h3 class="credit-name">Sezin Sözden</h3>
+            <div class="credit-header-with-avatar">
+              <img src="assets/renders/designer-sezin-sozden.jpg" alt="Sezin Sözden - Industrial Designer" class="credit-avatar">
+              <div>
+                <span class="credit-role">Industrial Design & Product Concept</span>
+                <h3 class="credit-name">Sezin Sözden</h3>
+              </div>
+            </div>
             <p class="credit-bio">
-              Industrial designer responsible for Tone's physical form factor, 5N1K user research, ergonomic studies, materials palette, brand identity, and graduation project thesis.
+              Industrial designer who conceptualized and designed Tone as a graduation project at <strong>İzmir University of Economics</strong> (Faculty of Fine Arts & Design, 2025). Responsible for physical form factor, 5N1K user research, ergonomics, material palettes, renders, and brand identity.
             </p>
+            <div class="academic-badge" style="margin: 0;">
+              <span>Advisors: Asst. Prof. Can Özcan, Lect. Özgür Deniz Çetin, Res. Asst. Anıl Dinç Demirbilek</span>
+            </div>
             <div class="credit-links">
               <a href="mailto:sezinsozden@gmail.com" class="credit-link">sezinsozden@gmail.com</a>
+              <a href="https://www.ffadgrad.ieu.edu.tr/id-projects/sezin-sozden" target="_blank" rel="noopener noreferrer" class="credit-link">Graduation Catalog</a>
               <a href="https://sezinsozden.my.canva.site/portfolio" target="_blank" rel="noopener noreferrer" class="credit-link">Design Portfolio</a>
             </div>
           </div>

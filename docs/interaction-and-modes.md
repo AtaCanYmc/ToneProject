@@ -21,9 +21,22 @@ Tone provides 3 primary sound control profiles defined in `ToneController.h`:
 
 | Mode Index | Mode Name | Value Range | Default RGB Color | Default Hex | Acoustic Impact |
 | :---: | :--- | :---: | :--- | :--- | :--- |
-| **0** | **Volume** | $0 - 100$ | `rgb(255, 255, 155)` | `#FFFF9B` (Warm White) | Master system output gain across full audio range. |
-| **1** | **Bass** | $0 - 100$ | `rgb(122, 50, 245)` | `#7A32F5` (Deep Purple) | Low-frequency equalization ($32\text{ Hz} - 250\text{ Hz}$). |
-| **2** | **Treble** | $0 - 100$ | `rgb(90, 240, 255)` | `#5AF0FF` (Electric Cyan) | High-frequency clarity & air ($4\text{ kHz} - 16\text{ kHz}$). |
+| **0** | **Volume** | $0 - 100$ | `rgb(255, 255, 180)` | `#FFFDF0` (Warm White) | Master system output gain across full audio range. |
+| **1** | **Bass** | $0 - 100$ | `rgb(138, 43, 226)` | `#8B5CF6` (Deep Purple) | Low-frequency equalization ($32\text{ Hz} - 250\text{ Hz}$). |
+| **2** | **Treble** | $0 - 100$ | `rgb(255, 130, 20)` | `#F97316` (Vibrant Orange) | High-frequency clarity & air ($4\text{ kHz} - 16\text{ kHz}$). |
+
+> [!NOTE]
+> As specified in the official graduation catalog design by **Sezin Sözden** ([İzmir University of Economics](https://www.ffadgrad.ieu.edu.tr/id-projects/sezin-sozden)), the three states provide instantaneous visual feedback: **White for Volume**, **Purple for Bass**, and **Orange for Treble**.
+
+---
+
+## Visual Design Reference
+
+![Tone Interaction Modes](../assets/renders/tone-modes-press.jpg)
+*Figure: Mode switching via single top press (Treble, Bass, Volume) and radial optical feedback.*
+
+![Tone Slide and Rotate Gestures](../assets/renders/tone-slide-rotate.jpg)
+*Figure: Tactile palm ergonomics and slide/rotate parameter modulation across 0–100 scale.*
 
 ---
 
