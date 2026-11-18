@@ -1,0 +1,39 @@
+# Build artifacts and compiled binaries
+build/
+cmake-build-*/
+out/
+dist/
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+
+# ESP32 and Arduino build cache
+.arduino15/
+*.ino.cpp
+*.ino.hex
+
+# Python environment and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.pytest_cache/
+
+# Environment and secrets
+.env
+*.env.local
+
+# IDEs and editors
+.idea/
+.vscode/
+*.iml
+*.swp
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db

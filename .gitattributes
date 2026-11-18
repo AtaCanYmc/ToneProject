@@ -1,0 +1,24 @@
+* text=auto eol=lf
+
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+
+*.md text diff=markdown
+*.json text
+*.yml text
+*.yaml text
+*.ino text
+*.cpp text
+*.h text
+*.py text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+
+.github export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
