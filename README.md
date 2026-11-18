@@ -1,17 +1,16 @@
-# TONEPROJECT
-*Empower Your Audio Experience with Seamless Control*
-
 <div align="center">
 
-![last-commit](https://img.shields.io/github/last-commit/AtaCanYmc/ToneProject?style=flat&logo=git&logoColor=white&color=0080ff)
-![repo-top-language](https://img.shields.io/github/languages/top/AtaCanYmc/ToneProject?style=flat&color=0080ff)
-![repo-language-count](https://img.shields.io/github/languages/count/AtaCanYmc/ToneProject?style=flat&color=0080ff)
+<img src="assets/tone-logo.svg" width="240" height="240" alt="Tone Tactile Sound Controller Logo" />
 
-**Built with the tools and technologies:**
+# Tone
 
-![C++](https://img.shields.io/badge/C++-00599C.svg?style=flat&logo=C%2B%2B&logoColor=white)
-![CMake](https://img.shields.io/badge/CMake-064F8C.svg?style=flat&logo=CMake&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB.svg?style=flat&logo=Python&logoColor=white)
+**Tactile Desktop Equalizer and Audio Controller**
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-ESP32%20%7C%20macOS%20%7C%20Windows-blue)](docs/hardware-architecture.md)
+[![C++](https://img.shields.io/badge/C%2B%2B-14-00599C?logo=c%2B%2B)](libs/ToneOS)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python)](libs/ToneTerminal)
+[![Docs](https://img.shields.io/badge/Docs-Architecture%20%26%20Guide-green)](docs/)
 
 </div>
 
@@ -20,89 +19,192 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Usage](#usage)
+- [System Architecture](#system-architecture)
+- [Hardware Pinout & Electronics](#hardware-pinout--electronics)
+- [Interaction Modes & LED Feedback](#interaction-modes--led-feedback)
+- [Repository Structure](#repository-structure)
+- [Quick Start](#quick-start)
+  - [1. Firmware Setup (ToneOS)](#1-firmware-setup-toneos)
+  - [2. Desktop Companion (ToneTerminal)](#2-desktop-companion-toneterminal)
+- [Bluetooth Low Energy Protocol](#bluetooth-low-energy-protocol)
+- [Documentation Index](#documentation-index)
+- [Credits & License](#credits--license)
 
 ---
 
 ## Overview
 
-**ToneProject** is an innovative developer tool designed to streamline interactive audio and visual experiences through robust joystick and Bluetooth integration.
+**Tone** is a tactile desktop sound controller that bridges physical haptics with digital audio control. Rather than relying on flat onscreen sliders, Tone translates rotational and tap gestures on an elliptical surface into fluid sound adjustments and real-time optical LED feedback.
 
-### Why ToneProject?
+> The physical form factor, tactile interaction language, and industrial design of Tone were created by industrial designer **Sezin Sözden** ([sezinsozden@gmail.com](mailto:sezinsozden@gmail.com)) as a graduation project.
 
-This project empowers developers to create immersive audio applications with ease. The core features include:
-
-- 🎮 **Interactive Experience Management:** Customize interaction modes for flexible user interfaces.
-- 📡 **Bluetooth Low Energy Communication:** Enable seamless device connectivity for enhanced user engagement.
-- 🎛️ **Dynamic Audio Control:** Adjust audio settings in real-time through a user-friendly interface.
-- 💡 **Visual Feedback with NeoPixels:** Manage LED displays for engaging visual representations.
-- 🕹️ **Joystick Input Handling:** Ensure accurate joystick input management for precise control.
-- 🔄 **Cross-Platform Volume Control:** Support consistent audio functionality across different operating systems.
+The system consists of two primary subsystems:
+1. **ToneOS (`libs/ToneOS`)**: C++ embedded firmware running on an ESP32 microcontroller, reading analog joystick coordinates, driving a 270-degree WS2812B NeoPixel optical diffuser arc, and advertising as a Bluetooth Low Energy (BLE) GATT server.
+2. **ToneTerminal (`libs/ToneTerminal`)**: Cross-platform Python desktop bridge running on macOS and Windows, pairing automatically with the controller to synchronize and adjust system audio levels in real time.
 
 ---
 
-## Getting Started
+## System Architecture
 
-### Prerequisites
+```mermaid
+flowchart LR
+    subgraph Hardware["Tone Hardware Peripheral"]
+        J["Analog 2-Axis Joystick + Switch"] --> TC["ToneController Engine"]
+        TC --> LED["WS2812B NeoPixel Ring (11 LEDs)"]
+        TC --> BLE["ESP32 BLE GATT Server ('Tone Equalizer')"]
+    end
 
-This project requires the following dependencies:
-
-- **Programming Language:** C++, Python
-- **Package Manager:** CMake, Pip
-
----
-
-### Installation
-
-Build ToneProject from the source and install dependencies:
-
-1. **Clone the repository:**
-
-```sh
-git clone https://github.com/AtaCanYmc/ToneProject
-```
-
-
-2. **Navigate to the project directory:**
-
-```sh
-cd ToneProject
-```
-
-3. **Install the dependencies:**
-
-#### Using [CMake](https://cmake.org/):
-
-```sh
-cmake . && make
-```
-
-4. Using the pip:
-```sh
-pip install -r libs/ToneTerminal/requirements.txt
+    subgraph Host["Desktop Computer"]
+        BLE -.->|BLE 5.1 Notify / Write| TT["ToneTerminal (Bleak Client)"]
+        TT --> OS{"Host Operating System"}
+        OS -->|"macOS (Darwin)"| MAC["osascript CoreAudio"]
+        OS -->|"Windows (NT)"| WIN["pycaw Audio Endpoint"]
+    end
 ```
 
 ---
 
-### Usage
+## Hardware Pinout & Electronics
 
-#### Using CMake:
+The firmware supports both compact ESP32-C3 boards and ESP32-WROOM development modules:
 
-```sh
-./ToneProject
-```
+| Signal / Function | ESP32 Pin (Default) | Alternate DevKit Pin | Hardware Connection | Description |
+| :--- | :---: | :---: | :--- | :--- |
+| **Joystick X-Axis** | `GPIO 3` | `GPIO 34` | Thumbstick Potentiometer X | 12-bit ADC analog position reading |
+| **Joystick Y-Axis** | `GPIO 4` | `GPIO 35` | Thumbstick Potentiometer Y | 12-bit ADC analog position reading |
+| **Tactile Push Switch** | `GPIO 5` | `GPIO 25` | Thumbstick Center Button | Digital input (pull-up active) |
+| **NeoPixel Data (`DIN`)** | `GPIO 10` | `GPIO 13` | WS2812B LED Ring | Single-wire NRZ timing signal |
+| **Power Input** | USB-C (5V) | USB-C (5V) | Charging & Logic Rail | 5V / 2A external or battery powered |
 
-#### Using Python:
-```sh
-python {entrypoint}
+---
+
+## Interaction Modes & LED Feedback
+
+Tapping down on the controller cycles between three independent audio parameters. The integrated NeoPixel arc shifts color and illuminates proportionally ($0\% - 100\%$):
+
+| Mode Index | Parameter | LED Feedback Color | Frequency Target | Description |
+| :---: | :--- | :--- | :--- | :--- |
+| **0** | **Volume** | Warm White (`#FFFF9B`) | Master Gain | Controls master OS audio level. |
+| **1** | **Bass** | Deep Purple (`#7A32F5`) | $32\text{ Hz} - 250\text{ Hz}$ | Equalization for low-end punch and kick drums. |
+| **2** | **Treble** | Electric Cyan (`#5AF0FF`) | $4\text{ kHz} - 16\text{ kHz}$ | Equalization for acoustic clarity and vocal air. |
+
+---
+
+## Repository Structure
+
+```text
+ToneProject/
+├── assets/
+│   ├── tone-logo.svg           # High-resolution vector brand mark
+│   ├── tone-logo.png           # 800x800 rasterized square logo
+│   └── pdf/                    # Source graduation project artifacts
+│       ├── tone-user-manual.pdf
+│       ├── tone-booklet.pdf
+│       ├── tone-project-folder.pdf
+│       └── tone-board.pdf
+├── docs/                       # Technical and design documentation
+│   ├── index.md                # Documentation portal
+│   ├── design-philosophy.md    # 5N1K research and design background
+│   ├── hardware-architecture.md# Exploded assembly and pinouts
+│   ├── interaction-and-modes.md# Gesture mechanics and LED logic
+│   ├── bluetooth-protocol.md   # BLE GATT architecture & packet format
+│   └── user-manual.md          # Complete operation and cleaning guide
+├── libs/
+│   ├── ToneOS/                 # ESP32 C++ firmware
+│   │   ├── toneOS.ino          # Arduino entry point and setup routines
+│   │   ├── ToneController.cpp  # Mode state machine and dispatch engine
+│   │   ├── JoyController.cpp   # ADC deadzone filtering and trigonometry
+│   │   ├── PixelController.cpp # WS2812B illumination and arc animation
+│   │   └── BluetoothController.cpp # BLE GATT server and advertising
+│   └── ToneTerminal/           # Python desktop companion client
+│       ├── main.py             # Discovery loop and client runtime
+│       ├── bluetooth_utils.py  # Bleak GATT client and notification handler
+│       ├── utils.py            # macOS and Windows system audio bindings
+│       ├── requirements.txt    # Python dependencies
+│       └── .env.example        # Environment variable template
+└── README.md
 ```
 
 ---
 
-[⬆ Return to Top](#toneproject)
+## Quick Start
 
+### 1. Firmware Setup (ToneOS)
 
+Compile and flash the firmware using the Arduino IDE or CLI:
 
+1. Open `libs/ToneOS/toneOS.ino` in the Arduino IDE.
+2. Select target board **ESP32 Dev Module** (or your specific ESP32 variant).
+3. Ensure required Arduino libraries are installed:
+   - `Adafruit NeoPixel`
+   - Built-in ESP32 `BLEDevice` framework
+4. Verify GPIO pin assignments at the top of `toneOS.ino`:
+   ```cpp
+   #define NUMPIXELS 11        // Number of NeoPixel LEDs in arc
+   #define PIXELPIN  10        // GPIO10 - NeoPixel Data
+   #define XPIN      3         // GPIO3  - Joystick X (ADC1)
+   #define YPIN      4         // GPIO4  - Joystick Y (ADC1)
+   #define SWPIN     5         // GPIO5  - Joystick Push Switch
+   ```
+5. Connect your ESP32 via USB and upload the sketch.
+6. Open the Serial Monitor at `115200 baud` to verify boot output:
+   ```text
+   ToneOS started
+   [BLE] - Bluetooth device is now discoverable.
+   ```
+
+### 2. Desktop Companion (ToneTerminal)
+
+Run the Python companion client on your computer:
+
+```bash
+# 1. Navigate to the client directory
+cd libs/ToneTerminal
+
+# 2. Create and activate a virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Optional: Configure custom device parameters
+cp .env.example .env
+
+# 5. Launch ToneTerminal
+python3 main.py
+```
+
+ToneTerminal will automatically scan for `Tone Equalizer`, establish the BLE GATT link, read your current system volume, and synchronize the controller.
+
+---
+
+## Bluetooth Low Energy Protocol
+
+| Parameter | Value |
+| :--- | :--- |
+| **Device Name** | `Tone Equalizer` |
+| **GATT Service UUID** | `12345678-1234-1234-1234-1234567890ab` |
+| **Characteristic UUID** | `abcdefab-1234-1234-1234-abcdefabcdef` |
+| **Properties** | `READ`, `WRITE`, `NOTIFY` |
+| **Initial Sync Handshake** | Host writes `vol:<int>` (e.g. `vol:65`) |
+| **Event Notifications** | Device notifies UTF-8 JSON: `{"mode": "Volume", "value": "78"}` |
+
+---
+
+## Documentation Index
+
+Comprehensive engineering and design specifications are maintained in the [`docs/`](docs/) directory:
+- [Design Philosophy & 5N1K Research](docs/design-philosophy.md)
+- [Hardware Architecture & Pinouts](docs/hardware-architecture.md)
+- [Interaction Mechanics & Sound Modes](docs/interaction-and-modes.md)
+- [Bluetooth Protocol Specification](docs/bluetooth-protocol.md)
+- [User Manual & Maintenance Guide](docs/user-manual.md)
+
+---
+
+## Credits & License
+
+- **Industrial Design & Product Concept**: **Sezin Sözden** ([sezinsozden@gmail.com](mailto:sezinsozden@gmail.com) · [Portfolio](https://sezinsozden.my.canva.site/portfolio))
+- **Software & Firmware Architecture**: **Ata Can Yaymacı** ([@AtaCanYmc](https://github.com/AtaCanYmc) · [atacanymc@gmail.com](mailto:atacanymc@gmail.com))
+- **Source Code License**: [MIT License](LICENSE) (c) 2026 AtaCanYmc
