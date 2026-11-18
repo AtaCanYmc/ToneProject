@@ -1,0 +1,7 @@
+# robots.txt for Tone Project (https://atacanymc.github.io/ToneProject/)
+User-agent: *
+Allow: /
+
+# Canonical Site & Repository
+# Site: https://atacanymc.github.io/ToneProject/
+# Repository: https://github.com/AtaCanYmc/ToneProject

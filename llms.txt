@@ -1,0 +1,53 @@
+# Tone — Tactile Desktop Audio Controller
+
+> Tone is an open-source tactile desktop sound equalizer and controller that bridges physical haptics with digital audio control. Conceived as an industrial design graduation project by Sezin Sözden (İzmir University of Economics, FFAD 2025) and engineered in software & embedded firmware by Ata Can Yaymacı.
+
+Tone replaces flat touchscreen sliders and keyboard shortcuts with a physical, elliptical desktop peripheral featuring continuous rotation, top press mode selection, and a 270-degree diffused RGB LED arc that mirrors sound levels.
+
+## System Architecture
+
+- **ToneOS Firmware (`libs/ToneOS`)**: Embedded C++ firmware for Espressif ESP32 microcontrollers (supporting both ESP32 DevKit WROOM-32 and ESP32-C3 RISC-V targets via PlatformIO). Handles 2-axis analog joystick deadzone filtering, drives an 11-13 WS2812B NeoPixel ring, and operates a BLE GATT server.
+- **ToneTerminal Desktop Daemon (`libs/ToneTerminal`)**: Cross-platform Python desktop bridge that runs in the background on macOS (Darwin, using CoreAudio via osascript) and Windows (NT, using pycaw AudioEndpointVolume). Pairs over Bluetooth 5.1 Low Energy to synchronize system master gain and receive equalizer packets.
+- **Hardware Architecture**: Plan envelope 205.30 mm × 205.00 mm, base diameter 205.00 mm, total height 93.10 mm, concave top saddle span 82.00 mm, 5V/2A USB-C charging cutout (11.50 mm × 3.50 mm). Full 1:1 orthographic drawing in Sheet DM-495.
+
+## Interaction Modes & Optical Feedback
+
+Tapping down on the concave elliptical control saddle cycles through three operational states:
+- **Volume (Mode 0)**: Master system gain (0–100). LED feedback: Warm White (`#FFFDF0` / `RGB(255, 255, 180)`).
+- **Bass (Mode 1)**: Low-frequency equalization profile (32 Hz – 250 Hz). LED feedback: Deep Purple (`#8B5CF6` / `RGB(138, 43, 226)`).
+- **Treble (Mode 2)**: High-frequency presence control (4 kHz – 16 kHz). LED feedback: Vibrant Orange (`#F97316` / `RGB(255, 130, 20)`).
+
+## Bluetooth Low Energy Protocol
+
+- **Device Advertisement Name**: `Tone Equalizer`
+- **GATT Service UUID**: `12345678-1234-1234-1234-1234567890ab`
+- **Characteristic UUID**: `abcdefab-1234-1234-1234-abcdefabcdef`
+- **Properties**: `READ`, `WRITE`, `NOTIFY` (Descriptor `0x2902`)
+- **Initial Sync (Host -> Device)**: `vol:<integer>` (e.g., `vol:65`)
+- **Telemetry Event (Device -> Host)**: UTF-8 JSON payload, e.g.:
+  `{"mode": "Volume", "value": "78", "r": "255", "g": "255", "b": "180"}`
+
+## Documentation & Source Guides
+
+- [System Overview](https://atacanymc.github.io/ToneProject/#simulator): Interactive web simulator with Web Audio feedback and BLE telemetry stream.
+- [Hardware Architecture](https://atacanymc.github.io/ToneProject/hardware-architecture.html): Mechanical exploded assembly, millimeter CAD specs, and microcontroller pinout switcher.
+- [Design Philosophy & 5N1K Research](https://atacanymc.github.io/ToneProject/design-philosophy.html): Problem statement, user research framework, and ergonomic studies.
+- [Interaction Mechanics & Sound Modes](https://atacanymc.github.io/ToneProject/interaction-and-modes.html): Gesture taxonomy, vector angle mapping, and proportional LED scaling algorithms.
+- [BLE Protocol Specification](https://atacanymc.github.io/ToneProject/bluetooth-protocol.html): Connection state machine and GATT packet schemas.
+- [User Manual](https://atacanymc.github.io/ToneProject/user-manual.html): Setup, pairing, care, and microfiber maintenance instructions.
+
+## Source PDF Documents
+
+- [CAD Technical Blueprint Sheet DM-495 (PDF)](https://atacanymc.github.io/ToneProject/assets/pdf/tone-technical-design.pdf): 1:1 scale orthographic drawing with section views.
+- [Official Tone User Manual (PDF)](https://atacanymc.github.io/ToneProject/assets/pdf/tone-user-manual.pdf): Onboarding, controls, and maintenance guide.
+- [Tone Design Booklet (PDF)](https://atacanymc.github.io/ToneProject/assets/pdf/tone-booklet.pdf): 5N1K research and form ideation.
+- [Complete Project Dossier (PDF)](https://atacanymc.github.io/ToneProject/assets/pdf/tone-project-folder.pdf): Comprehensive graduation portfolio and CMF specifications.
+- [Graduation Exhibition Board (PDF)](https://atacanymc.github.io/ToneProject/assets/pdf/tone-board.pdf): Large-format presentation poster.
+
+## Credits & Academic Attribution
+
+- **Industrial Design & Concept**: **Sezin Sözden** ([sezinsozden@gmail.com](mailto:sezinsozden@gmail.com) · [Graduation Catalog](https://www.ffadgrad.ieu.edu.tr/id-projects/sezin-sozden) · [Portfolio](https://sezinsozden.my.canva.site/portfolio))
+  - İzmir University of Economics (İzmir Ekonomi Üniversitesi) — Faculty of Fine Arts and Design, Department of Industrial Design (2025)
+  - Academic Advisors: Asst. Prof. Can ÖZCAN, Lect. Özgür Deniz ÇETİN, Res. Asst. Anıl Dinç DEMİRBİLEK
+- **Software & Firmware Architecture**: **Ata Can Yaymacı** ([atacanymc@gmail.com](mailto:atacanymc@gmail.com) · [GitHub Profile](https://github.com/AtaCanYmc))
+- **Source Code License**: MIT License (c) 2026 AtaCanYmc

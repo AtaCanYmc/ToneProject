@@ -1,0 +1,31 @@
+/* TEAM */
+Industrial Designer & Concept Creator: Sezin Sözden
+Contact: sezinsozden@gmail.com
+Portfolio: https://sezinsozden.my.canva.site/portfolio
+Graduation Catalog: https://www.ffadgrad.ieu.edu.tr/id-projects/sezin-sozden
+Location: İzmir, Turkey
+
+Software & Firmware Engineer: Ata Can Yaymacı
+Contact: atacanymc@gmail.com
+GitHub: https://github.com/AtaCanYmc
+Location: İzmir, Turkey
+
+/* ACADEMIC ADVISORS & JURY */
+Institution: İzmir University of Economics (İzmir Ekonomi Üniversitesi)
+Faculty: Faculty of Fine Arts and Design (FFAD)
+Department: Department of Industrial Design
+Project: Graduation Thesis 2025 (Tone — Tactile Sound Controller)
+Coordinators:
+- Asst. Prof. Can ÖZCAN
+- Lect. Özgür Deniz ÇETİN
+- Res. Asst. Anıl Dinç DEMİRBİLEK
+
+/* SITE & TECHNOLOGY */
+Standards: HTML5, CSS3, ES6+, Web Audio API, Web Bluetooth API
+Architecture: Zero-Dependency Vanilla Web Components, CSS Custom Properties Design System
+Microcontroller: ESP32 / ESP32-C3 (PlatformIO, Arduino ESP32 framework)
+Firmware Libraries: Adafruit NeoPixel, ESP32 BLE Arduino
+Desktop Client: Python 3.10+, Bleak (BLE), pycaw (Windows CoreAudio), osascript (macOS)
+Host: GitHub Pages
+Repository: https://github.com/AtaCanYmc/ToneProject
+License: MIT License
