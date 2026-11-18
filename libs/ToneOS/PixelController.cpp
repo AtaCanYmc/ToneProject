@@ -49,10 +49,10 @@ void PixelController::setPixelColor(int pixel, uint32_t color) {
 }
 
 int PixelController::getPixelIndex(int pixel) {
-    pixel = pixel + offset;
-    if (pixel < 0) pixel = numPixels + pixel;
-    if (pixel > numPixels) pixel = pixel % numPixels;
-    if (this->isReverse) pixel = (numPixels - pixel) - 1;
+    if (numPixels <= 0) return 0;
+    pixel = (pixel + offset) % numPixels;
+    if (pixel < 0) pixel += numPixels;
+    if (this->isReverse) pixel = (numPixels - 1) - pixel;
     return pixel;
 }
 

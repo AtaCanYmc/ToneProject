@@ -10,17 +10,8 @@
  * @param deviceName Name of the Bluetooth device.
  */
 BluetoothController::BluetoothController(const String &deviceName)
-    : _deviceName(deviceName), _isConnected(false), _hasClient(false) {
-    BLEDevice::init(_deviceName);
-    _bleServer = BLEDevice::createServer();
-    _bleAdvertising = _bleServer->getAdvertising();
-    _bleService = _bleService = _bleServer->createService(SERVICE_UUID);
-    _bleCharacteristic = _bleService->createCharacteristic(
-        CHARACTERISTIC_UUID,
-        BLECharacteristic::PROPERTY_READ |
-        BLECharacteristic::PROPERTY_NOTIFY |
-        BLECharacteristic::PROPERTY_WRITE
-    );
+    : _deviceName(deviceName), _isConnected(false), _hasClient(false),
+      _bleServer(nullptr), _bleAdvertising(nullptr), _bleService(nullptr), _bleCharacteristic(nullptr) {
 }
 
 /**

@@ -1,19 +1,31 @@
 import asyncio
 import os
-from bleak import BleakScanner, BLEDevice, BleakClient, BleakGATTServiceCollection, BleakGATTCharacteristic
-from dotenv import load_dotenv
+import platform
 import json
+from dotenv import load_dotenv
+from bleak import (
+    BleakScanner,
+    BLEDevice,
+    BleakClient,
+    BleakGATTServiceCollection,
+    BleakGATTCharacteristic,
+)
 
-from utils import log, set_volume_mac, get_volume_data_as_int
+from utils import (
+    log,
+    set_volume_mac,
+    set_volume_windows,
+    get_volume_data_as_int,
+)
 
 load_dotenv()
 
-tone_device: BLEDevice = None  # Replace it with your device's MAC address
-tone_client: BleakClient = None  # Replace it with your BLE client if needed
+tone_device: BLEDevice = None
+tone_client: BleakClient = None
 tone_device_name = os.getenv("DEVICE_NAME", "Tone Equalizer")
-characteristic_uuid = os.getenv("CHARACTERISTIC_UUID", "your_characteristic_uuid_here")
-service_uuid = os.getenv("SERVICE_UUID", "your_service_uuid_here")
-operating_system = os.uname().sysname
+characteristic_uuid = os.getenv("CHARACTERISTIC_UUID", "abcdefab-1234-1234-1234-abcdefabcdef")
+service_uuid = os.getenv("SERVICE_UUID", "12345678-1234-1234-1234-1234567890ab")
+operating_system = platform.system()
 
 
 # === BLE (Bluetooth Low Energy) ===
@@ -46,10 +58,9 @@ def is_ble_device_connected_sync(device_name: str) -> bool:
 def connect_to_ble_device() -> bool:
     global tone_device
     global tone_client
-    global characteristic_uuid
     current_volume = get_volume_data_as_int(operating_system)
     current_vol_str = f"vol:{current_volume}"
-    log(f"Current volume: {current_volume}")
+    log(f"Current host volume: {current_volume}%")
 
     if tone_device is None:
         log("No BLE device found to connect.", "ERROR")
@@ -57,12 +68,20 @@ def connect_to_ble_device() -> bool:
     try:
         async def connect():
             async with BleakClient(tone_device.address) as client:
-                status = 'Connected' if client.is_connected else 'Not connected'
+                status = "Connected" if client.is_connected else "Not connected"
                 log(f"{status} to {tone_device.name} ({tone_device.address})")
-                await client.write_gatt_char(find_notify_uuid(client.services), current_vol_str.encode('utf-8'))
-                await client.start_notify(find_notify_uuid(client.services), handle_notification)
-                log("Listening for messages...")
-                await asyncio.sleep(9999)
+
+                notify_char = find_notify_uuid(client.services)
+                if not notify_char:
+                    log("No notify characteristic found on device.", "ERROR")
+                    return False
+
+                # Send initial host volume to synchronize hardware display
+                await client.write_gatt_char(notify_char, current_vol_str.encode("utf-8"))
+                await client.start_notify(notify_char, handle_notification)
+                log("Listening for tone notifications...")
+                while client.is_connected:
+                    await asyncio.sleep(1)
                 return True
 
         return asyncio.run(connect())
@@ -75,25 +94,33 @@ def handle_notification(sender: BleakGATTCharacteristic, data: bytearray):
     if not data:
         return
     try:
-        str_data = data.decode('utf-8', errors='ignore')
+        str_data = data.decode("utf-8", errors="ignore").strip()
         json_data = json.loads(str_data)
         log(f"From {sender.uuid}: {json_data}", "TONE")
-        if operating_system == "Darwin":  # macOS
-            set_volume_mac(int(json_data.get("value", 0)))
-        elif operating_system == "nt":
-            set_volume_windows(int(json_data.get("value", 0)))
 
+        raw_val = json_data.get("value")
+        if raw_val is None:
+            return
+
+        volume_val = max(0, min(100, int(raw_val)))
+
+        if operating_system == "Darwin":
+            set_volume_mac(volume_val)
+        elif operating_system in ("Windows", "nt"):
+            set_volume_windows(volume_val)
+
+    except (ValueError, TypeError, json.JSONDecodeError) as e:
+        log(f"Error parsing BLE notification: {e}", "WARNING")
     except Exception as e:
-        log(f"Error decoding data: {e}", "ERROR")
-        return
+        log(f"Unexpected error in notification handler: {e}", "ERROR")
 
 
 def find_notify_uuid(client_services: BleakGATTServiceCollection):
     """
-    Finds the first characteristic with notification support in the given service.
+    Finds the first characteristic with notification support in the given services.
     """
     for service in client_services:
         for characteristic in service.characteristics:
-            if 'notify' in characteristic.properties:
+            if "notify" in characteristic.properties:
                 return characteristic
     return None
