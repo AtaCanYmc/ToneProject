@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <radialGradient id="bgGlow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#1a1e29" />
+      <stop offset="55%" stop-color="#0d1017" />
+      <stop offset="100%" stop-color="#07080c" />
+    </radialGradient>
+
+    <!-- Outer Rim Metallic Gradient -->
+    <linearGradient id="rimMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3a4252" />
+      <stop offset="30%" stop-color="#1e232d" />
+      <stop offset="70%" stop-color="#12151c" />
+      <stop offset="100%" stop-color="#2d3442" />
+    </linearGradient>
+
+    <!-- Inner Dial Aluminum Gradient -->
+    <radialGradient id="dialSurface" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#242a38" />
+      <stop offset="60%" stop-color="#131722" />
+      <stop offset="100%" stop-color="#0a0c12" />
+    </radialGradient>
+
+    <!-- LED Arc Gradient: White/Cyan to Violet/Orange -->
+    <linearGradient id="ledGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <linearGradient id="ledGlowGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#818cf8" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Sphere Center Joystick Gradient -->
+    <radialGradient id="sphereCore" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="40%" stop-color="#1e293b" />
+      <stop offset="85%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+
+    <!-- Specular Highlight -->
+    <linearGradient id="specularGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="neonBloom" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur1" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="24" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="28" flood-color="#000000" flood-opacity="0.75" />
+    </filter>
+
+    <filter id="dialGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#38bdf8" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Background Base Container (Premium Squircle) -->
+  <rect x="0" y="0" width="800" height="800" rx="160" fill="url(#bgGlow)" />
+  <rect x="2" y="2" width="796" height="796" rx="158" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="2" />
+  <rect x="16" y="16" width="768" height="768" rx="146" fill="none" stroke="rgba(255, 255, 255, 0.02)" stroke-width="1" />
+
+  <!-- Subtle Acoustic Wave Grid in Background -->
+  <g opacity="0.15">
+    <circle cx="400" cy="360" r="320" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 8" />
+    <circle cx="400" cy="360" r="280" fill="none" stroke="#94a3b8" stroke-width="1" />
+    <circle cx="400" cy="360" r="240" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2 6" />
+  </g>
+
+  <!-- Main Hardware Dial Chassis -->
+  <g filter="url(#softShadow)">
+    <!-- Outer Beveled Aluminum Ring -->
+    <circle cx="400" cy="360" r="210" fill="url(#rimMetallic)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="2" />
+    
+    <!-- Recessed Housing Trench -->
+    <circle cx="400" cy="360" r="198" fill="#090b10" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" />
+    
+    <!-- Internal Dial Face -->
+    <circle cx="400" cy="360" r="182" fill="url(#dialSurface)" />
+    
+    <!-- Subtle Radial Brushed Texture Ring -->
+    <circle cx="400" cy="360" r="180" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="2" />
+    <circle cx="400" cy="360" r="150" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1" stroke-dasharray="6 6" />
+  </g>
+
+  <!-- NeoPixel Optical LED Arc (Representing Tone's 270-degree fluid visual feedback) -->
+  <g filter="url(#neonBloom)">
+    <!-- Active Illuminated Arc (from 135 deg to 45 deg clockwise) -->
+    <path d="M 264 496 A 192 192 0 1 1 536 496" fill="none" stroke="url(#ledGlowGradient)" stroke-width="14" stroke-linecap="round" />
+    <path d="M 264 496 A 192 192 0 1 1 536 496" fill="none" stroke="url(#ledGradient)" stroke-width="8" stroke-linecap="round" />
+    <path d="M 264 496 A 192 192 0 1 1 536 496" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+  </g>
+
+  <!-- Distinct LED Beads (Representing 11 Hardware Pixel Nodes) -->
+  <g filter="url(#neonBloom)">
+    <!-- Node 1 (Start / Cyan) -->
+    <circle cx="264" cy="496" r="6" fill="#38bdf8" />
+    <circle cx="264" cy="496" r="2.5" fill="#ffffff" />
+
+    <!-- Node 2 -->
+    <circle cx="230" cy="420" r="6" fill="#38bdf8" />
+    <circle cx="230" cy="420" r="2.5" fill="#ffffff" />
+
+    <!-- Node 3 -->
+    <circle cx="224" cy="340" r="6" fill="#60a5fa" />
+    <circle cx="224" cy="340" r="2.5" fill="#ffffff" />
+
+    <!-- Node 4 -->
+    <circle cx="248" cy="265" r="6" fill="#818cf8" />
+    <circle cx="248" cy="265" r="2.5" fill="#ffffff" />
+
+    <!-- Node 5 -->
+    <circle cx="300" cy="205" r="6" fill="#818cf8" />
+    <circle cx="300" cy="205" r="2.5" fill="#ffffff" />
+
+    <!-- Node 6 (Apex Center) -->
+    <circle cx="400" cy="168" r="7" fill="#a78bfa" />
+    <circle cx="400" cy="168" r="3" fill="#ffffff" />
+
+    <!-- Node 7 -->
+    <circle cx="500" cy="205" r="6" fill="#a855f7" />
+    <circle cx="500" cy="205" r="2.5" fill="#ffffff" />
+
+    <!-- Node 8 -->
+    <circle cx="552" cy="265" r="6" fill="#c084fc" />
+    <circle cx="552" cy="265" r="2.5" fill="#ffffff" />
+
+    <!-- Node 9 -->
+    <circle cx="576" cy="340" r="6" fill="#c084fc" />
+    <circle cx="576" cy="340" r="2.5" fill="#ffffff" />
+
+    <!-- Node 10 -->
+    <circle cx="570" cy="420" r="6" fill="#e879f9" />
+    <circle cx="570" cy="420" r="2.5" fill="#ffffff" />
+
+    <!-- Node 11 (End / Magenta) -->
+    <circle cx="536" cy="496" r="6" fill="#f472b6" />
+    <circle cx="536" cy="496" r="2.5" fill="#ffffff" />
+  </g>
+
+  <!-- Central Tactile Sphere & Elliptical Controller -->
+  <g filter="url(#softShadow)">
+    <!-- Base Shadow of Core Sphere -->
+    <ellipse cx="400" cy="372" rx="94" ry="72" fill="#030712" opacity="0.6" />
+    
+    <!-- Tactile Rotation Center Sphere -->
+    <circle cx="400" cy="360" r="88" fill="url(#sphereCore)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" />
+    
+    <!-- Spherical Convex Specular Cap -->
+    <ellipse cx="380" cy="326" rx="58" ry="34" fill="url(#specularGlow)" />
+    
+    <!-- Center Tactile Push Indicator / Minimal Waveform Icon -->
+    <g transform="translate(400, 360)">
+      <!-- Waveform Bars -->
+      <line x1="-28" y1="-12" x2="-28" y2="12" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" opacity="0.8" />
+      <line x1="-14" y1="-22" x2="-14" y2="22" stroke="#818cf8" stroke-width="3.5" stroke-linecap="round" />
+      <line x1="0" y1="-32" x2="0" y2="32" stroke="#c084fc" stroke-width="4" stroke-linecap="round" />
+      <line x1="14" y1="-22" x2="14" y2="22" stroke="#818cf8" stroke-width="3.5" stroke-linecap="round" />
+      <line x1="28" y1="-12" x2="28" y2="12" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" opacity="0.8" />
+    </g>
+  </g>
+
+  <!-- Bottom Brand Typography -->
+  <g id="brandTypography">
+    <!-- Main "tone" Wordmark -->
+    <text x="400" y="650" 
+          font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Helvetica Neue', sans-serif" 
+          font-size="68" 
+          font-weight="300" 
+          letter-spacing="0.18em" 
+          fill="#f8fafc" 
+          text-anchor="middle">tone</text>
+    
+    <!-- Subtitle: TACTILE SOUND CONTROLLER -->
+    <text x="400" y="694" 
+          font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Helvetica Neue', sans-serif" 
+          font-size="14" 
+          font-weight="600" 
+          letter-spacing="0.38em" 
+          fill="#64748b" 
+          text-anchor="middle">TACTILE SOUND CONTROLLER</text>
+  </g>
+
+  <!-- Ambient Light Reflection on Top Border -->
+  <path d="M 220 2 L 580 2" stroke="url(#specularGlow)" stroke-width="2" stroke-linecap="round" />
+</svg>

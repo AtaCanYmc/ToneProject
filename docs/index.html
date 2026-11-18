@@ -2,199 +2,497 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tone - Tactile Desktop Sound Controller</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Technical and industrial design documentation for Tone - tactile desktop sound controller.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  
-  <link rel="icon" type="image/svg+xml" href="../assets/tone-logo.svg">
-  <!-- Docsify Dark Theme -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/dark.css">
-  
-  <style>
-    :root {
-      --theme-color: #38bdf8;
-      --base-background-color: #0d1117;
-      --sidebar-background: #090d13;
-      --sidebar-nav-link-color: #94a3b8;
-      --sidebar-nav-link-color--active: #38bdf8;
-      --heading-color: #f1f5f9;
-      --text-color-base: #cbd5e1;
-      --code-inline-background: #1e293b;
-      --code-theme-background: #161b22;
-      --border-color: #21262d;
-    }
-
-    body {
-      background-color: var(--base-background-color);
-      color: var(--text-color-base);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    .sidebar {
-      background-color: var(--sidebar-background);
-      border-right: 1px solid var(--border-color);
-    }
-
-    .sidebar-nav a {
-      font-size: 14px;
-      transition: color 0.15s ease;
-    }
-
-    .app-name-link img {
-      width: 72px;
-      height: 72px;
-      border-radius: 16px;
-      margin-bottom: 8px;
-    }
-
-    /* Coverpage Custom Styling */
-    section.cover {
-      background: radial-gradient(circle at 50% 40%, #171d29 0%, #090c12 100%) !important;
-    }
-
-    section.cover .cover-main img {
-      width: 140px;
-      height: 140px;
-      border-radius: 28px;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
-      margin-bottom: 16px;
-    }
-
-    section.cover h1 {
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: #f8fafc;
-      margin-bottom: 8px;
-    }
-
-    section.cover h1 small {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      color: #94a3b8;
-      text-transform: uppercase;
-      margin-top: 6px;
-    }
-
-    section.cover p a {
-      border-radius: 24px !important;
-      padding: 10px 24px !important;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      transition: all 0.2s ease;
-    }
-
-    section.cover p a:last-child {
-      background: #38bdf8 !important;
-      color: #090d16 !important;
-      border-color: #38bdf8 !important;
-    }
-
-    section.cover p a:last-child:hover {
-      background: #7dd3fc !important;
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
-    }
-
-    /* Markdown Elements */
-    .markdown-section table {
-      display: table;
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid var(--border-color);
-    }
-
-    .markdown-section th {
-      background-color: #161b22;
-      color: #f1f5f9;
-      font-weight: 600;
-      padding: 10px 14px;
-    }
-
-    .markdown-section td {
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .markdown-section tr:nth-child(2n) {
-      background-color: rgba(255, 255, 255, 0.02);
-    }
-
-    .markdown-section pre {
-      background-color: var(--code-theme-background) !important;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-    }
-
-    .markdown-section code {
-      border-radius: 4px;
-      padding: 2px 6px;
-    }
-
-    /* Mermaid diagrams container */
-    .mermaid {
-      background: #11151c;
-      padding: 16px;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-      text-align: center;
-      border: 1px solid var(--border-color);
-    }
-  </style>
+  <title>Tone — Tactile Desktop Sound Controller</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tone is a tactile desktop equalizer and audio controller bridging physical ergonomics with fluid optical LED feedback.">
+  <link rel="icon" type="image/svg+xml" href="assets/tone-logo.svg">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app">Loading Tone Documentation...</div>
-  <script>
-    window.$docsify = {
-      name: 'Tone',
-      logo: '../assets/tone-logo.svg',
-      repo: 'https://github.com/AtaCanYmc/ToneProject',
-      loadSidebar: true,
-      subMaxLevel: 3,
-      coverpage: true,
-      auto2top: true,
-      search: {
-        maxAge: 86400000,
-        paths: 'auto',
-        placeholder: 'Search documentation...',
-        noData: 'No results found',
-        depth: 4
-      },
-      copyCode: {
-        buttonText: 'Copy',
-        errorText: 'Error',
-        successText: 'Copied'
-      },
-      plugins: [
-        function(hook, vm) {
-          hook.afterEach(function(html) {
-            return html + '<footer style="margin-top: 50px; padding: 20px 0; border-top: 1px solid #21262d; font-size: 13px; color: #64748b; text-align: center;">Tone Project · Industrial Design by <a href="mailto:sezinsozden@gmail.com" style="color: #94a3b8;">Sezin Sözden</a> · Engineering by <a href="https://github.com/AtaCanYmc" target="_blank" style="color: #94a3b8;">Ata Can Yaymacı</a></footer>';
-          });
-        }
-      ]
-    };
-  </script>
 
-  <!-- Docsify Scripts -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand-link">
+        <img src="assets/tone-logo.svg" alt="Tone Brand Mark" class="brand-logo-img">
+        <span>tone</span>
+      </a>
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#simulator" class="nav-link">Simulator</a>
+        <a href="#modes" class="nav-link">Sound Modes</a>
+        <a href="#hardware" class="nav-link">Hardware</a>
+        <a href="#protocol" class="nav-link">BLE Protocol</a>
+        <a href="#documentation" class="nav-link">Documentation</a>
+      </nav>
+      <div class="header-actions">
+        <a href="https://github.com/AtaCanYmc/ToneProject" target="_blank" rel="noopener noreferrer" class="btn-github">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>Repository</span>
+        </a>
+      </div>
+    </div>
+  </header>
 
-  <!-- Mermaid.js for rendering flowchart and sequence diagrams -->
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
-    window.mermaid = mermaid;
-  </script>
+  <main>
+    <!-- Hero Section with Interactive Simulator -->
+    <section class="hero-section" id="simulator">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="pill-badge">Tactile Sound Controller</div>
+          <h1>Physical ergonomics meets fluid optical feedback.</h1>
+          <p class="hero-description">
+            Tone redefines audio interaction. Rather than clicking flat software sliders, Tone maps circular rotational gestures and center tap motions into real-time sound adjustments and optical NeoPixel lighting.
+          </p>
+
+          <div class="hero-meta-block">
+            <div class="hero-credits">Industrial Design & Concept by <strong>Sezin Sözden</strong></div>
+            <div class="hero-credits">Embedded Firmware & Software by <strong>Ata Can Yaymacı</strong></div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#documentation" class="btn-primary">Explore Documentation</a>
+            <a href="#hardware" class="btn-secondary">Hardware Architecture</a>
+          </div>
+        </div>
+
+        <!-- Interactive Hardware Stage Simulator -->
+        <div class="simulator-container">
+          <div class="device-stage" id="deviceStage" title="Rotate dial or click center button">
+            <!-- 270-degree NeoPixel LED Arc SVG -->
+            <svg class="led-arc-svg" id="ledArcSvg" viewBox="0 0 360 360"></svg>
+
+            <!-- Physical Rotatable Dial -->
+            <div class="tactile-dial" id="tactileDial">
+              <div class="dial-pip"></div>
+              <!-- Center Momentary Switch Button -->
+              <button type="button" class="center-sphere-btn" id="centerSphereBtn" aria-label="Switch Mode (Volume, Bass, Treble)">
+                <span class="sphere-label">MODE</span>
+                <span class="sphere-mode-val" id="sphereModeVal">Volume</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Real-Time Telemetry Dashboard -->
+          <div class="telemetry-card">
+            <div class="telemetry-header">
+              <span class="telemetry-title">GATT Live Stream</span>
+              <div class="telemetry-badge">
+                <span class="telemetry-dot"></span>
+                <span>BLE 5.1 Connected</span>
+              </div>
+            </div>
+            <div class="telemetry-values">
+              <div class="tel-cell">
+                <span class="tel-label">Active Mode</span>
+                <span class="tel-data" id="telMode">Volume</span>
+              </div>
+              <div class="tel-cell">
+                <span class="tel-label">Output Level</span>
+                <span class="tel-data" id="telVal">65%</span>
+              </div>
+              <div class="tel-cell">
+                <span class="tel-label">Dial Angle</span>
+                <span class="tel-data" id="telAngle">180°</span>
+              </div>
+            </div>
+            <pre class="ble-stream-box" id="bleStream">{"mode": "Volume", "value": "65", "r": "255", "g": "255", "b": "155"}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sound Modes Matrix -->
+    <section class="content-section" id="modes">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Acoustic Profiles</span>
+          <h2>Three Interaction Modes</h2>
+          <p>Tap the center button to cycle modes. The optical arc dynamically shifts color and illuminates proportionally.</p>
+        </div>
+
+        <div class="modes-grid">
+          <!-- Mode 0: Volume -->
+          <article class="mode-card">
+            <div class="mode-color-bar bar-volume"></div>
+            <div class="mode-card-header">
+              <h3 class="mode-name">Volume</h3>
+              <span class="mode-index-badge">MODE 0</span>
+            </div>
+            <span class="mode-freq-badge">Master Gain</span>
+            <p>Directs operating system master output volume across macOS (CoreAudio) and Windows (AudioEndpointVolume).</p>
+            <div class="telemetry-values">
+              <div class="tel-cell"><span class="tel-label">LED Color</span><span style="font-size:0.8rem; font-weight:600;">Warm White</span></div>
+              <div class="tel-cell"><span class="tel-label">Hex</span><span style="font-family:var(--font-mono); font-size:0.8rem;">#FFFDF0</span></div>
+              <div class="tel-cell"><span class="tel-label">Range</span><span style="font-family:var(--font-mono); font-size:0.8rem;">0 – 100</span></div>
+            </div>
+          </article>
+
+          <!-- Mode 1: Bass -->
+          <article class="mode-card">
+            <div class="mode-color-bar bar-bass"></div>
+            <div class="mode-card-header">
+              <h3 class="mode-name">Bass</h3>
+              <span class="mode-index-badge">MODE 1</span>
+            </div>
+            <span class="mode-freq-badge">32 Hz – 250 Hz</span>
+            <p>Low-frequency equalization profile. Enhances acoustic kick drums, bass guitar resonance, and synth sub-harmonics.</p>
+            <div class="telemetry-values">
+              <div class="tel-cell"><span class="tel-label">LED Color</span><span style="font-size:0.8rem; font-weight:600; color:#8b5cf6;">Deep Purple</span></div>
+              <div class="tel-cell"><span class="tel-label">Hex</span><span style="font-family:var(--font-mono); font-size:0.8rem;">#8B5CF6</span></div>
+              <div class="tel-cell"><span class="tel-label">Range</span><span style="font-family:var(--font-mono); font-size:0.8rem;">0 – 100</span></div>
+            </div>
+          </article>
+
+          <!-- Mode 2: Treble -->
+          <article class="mode-card">
+            <div class="mode-color-bar bar-treble"></div>
+            <div class="mode-card-header">
+              <h3 class="mode-name">Treble</h3>
+              <span class="mode-index-badge">MODE 2</span>
+            </div>
+            <span class="mode-freq-badge">4 kHz – 16 kHz</span>
+            <p>High-frequency presence control. Shapes crispness of vocals, cymbal decay, and harmonic brilliance in music tracks.</p>
+            <div class="telemetry-values">
+              <div class="tel-cell"><span class="tel-label">LED Color</span><span style="font-size:0.8rem; font-weight:600; color:#06b6d4;">Electric Cyan</span></div>
+              <div class="tel-cell"><span class="tel-label">Hex</span><span style="font-family:var(--font-mono); font-size:0.8rem;">#06B6D4</span></div>
+              <div class="tel-cell"><span class="tel-label">Range</span><span style="font-family:var(--font-mono); font-size:0.8rem;">0 – 100</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hardware Architecture & Interactive Pinout -->
+    <section class="content-section" id="hardware">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Engineering & Mechanics</span>
+          <h2>Hardware Architecture</h2>
+          <p>Exploded physical assembly coupled with dual-target ESP32 firmware pinouts.</p>
+        </div>
+
+        <div class="hardware-split">
+          <!-- Physical Layer Stack -->
+          <div class="exploded-stack">
+            <div class="stack-layer">
+              <span class="layer-num">01</span>
+              <div>
+                <div class="layer-name">Elliptical Control Disk</div>
+                <div class="layer-detail">Polished aluminum tactile ergonomic surface</div>
+              </div>
+            </div>
+            <div class="stack-layer">
+              <span class="layer-num">02</span>
+              <div>
+                <div class="layer-name">Rotation Center Sphere</div>
+                <div class="layer-detail">Tactile spherical push button housing</div>
+              </div>
+            </div>
+            <div class="stack-layer">
+              <span class="layer-num">03</span>
+              <div>
+                <div class="layer-name">Analog 2-Axis Joystick Assembly</div>
+                <div class="layer-detail">Dual 10k potentiometer axes with integrated push switch</div>
+              </div>
+            </div>
+            <div class="stack-layer">
+              <span class="layer-num">04</span>
+              <div>
+                <div class="layer-name">Translucent Frosted Polycarbonate Ring</div>
+                <div class="layer-detail">Optical light diffuser eliminating LED point-sources</div>
+              </div>
+            </div>
+            <div class="stack-layer">
+              <span class="layer-num">05</span>
+              <div>
+                <div class="layer-name">WS2812B NeoPixel Ring</div>
+                <div class="layer-detail">11–13 individually addressable RGB LEDs</div>
+              </div>
+            </div>
+            <div class="stack-layer">
+              <span class="layer-num">06</span>
+              <div>
+                <div class="layer-name">ESP32 SoC + Power Module</div>
+                <div class="layer-detail">Bluetooth 5.1 LE controller & USB-C 5V/2A charging circuit</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Pinout Switcher -->
+          <div class="pinout-card">
+            <div class="pinout-tabs" role="tablist">
+              <button class="pinout-tab-btn active" data-board="devkit" role="tab">ESP32 DevKit (WROOM)</button>
+              <button class="pinout-tab-btn" data-board="c3" role="tab">ESP32-C3 RISC-V</button>
+            </div>
+
+            <table class="pinout-table" aria-label="Microcontroller Pinout Table">
+              <thead>
+                <tr>
+                  <th>Signal</th>
+                  <th>Hardware Target</th>
+                  <th>Pin</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="pinout-row" data-devkit="GPIO 34" data-c3="GPIO 3">
+                  <td>Joystick X</td>
+                  <td>Potentiometer X</td>
+                  <td><code class="target-pin">GPIO 34</code></td>
+                  <td>ADC1 Analog</td>
+                </tr>
+                <tr class="pinout-row" data-devkit="GPIO 35" data-c3="GPIO 4">
+                  <td>Joystick Y</td>
+                  <td>Potentiometer Y</td>
+                  <td><code class="target-pin">GPIO 35</code></td>
+                  <td>ADC1 Analog</td>
+                </tr>
+                <tr class="pinout-row" data-devkit="GPIO 25" data-c3="GPIO 5">
+                  <td>Center Push</td>
+                  <td>Tactile Switch</td>
+                  <td><code class="target-pin">GPIO 25</code></td>
+                  <td>Digital Pull-Up</td>
+                </tr>
+                <tr class="pinout-row" data-devkit="GPIO 13" data-c3="GPIO 10">
+                  <td>NeoPixel DIN</td>
+                  <td>LED Ring Data</td>
+                  <td><code class="target-pin">GPIO 13</code></td>
+                  <td>Digital NRZ</td>
+                </tr>
+                <tr>
+                  <td>Power Input</td>
+                  <td>USB-C Port</td>
+                  <td><code>5V / 2A</code></td>
+                  <td>Power Rail</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="code-box">
+              <button class="copy-btn" data-code-target="pioCmdBlock">Copy</button>
+              <code id="pioCmdBlock"># Compile firmware with PlatformIO
+cd libs/ToneOS
+pio run -e esp32dev
+pio run -e esp32-c3-devkitm-1</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bluetooth Low Energy Protocol -->
+    <section class="content-section" id="protocol">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Wireless Connectivity</span>
+          <h2>Bluetooth Low Energy Protocol</h2>
+          <p>Low latency GATT server implementation communicating bidirectionally with host operating systems.</p>
+        </div>
+
+        <div class="modes-grid">
+          <div class="mode-card">
+            <h3 class="mode-name">GATT Service</h3>
+            <p>Primary communications UUID advertised under device name <code>Tone Equalizer</code>.</p>
+            <div class="code-box" style="margin:0;">
+              <code>12345678-1234-1234-1234-1234567890ab</code>
+            </div>
+          </div>
+
+          <div class="mode-card">
+            <h3 class="mode-name">Stream Characteristic</h3>
+            <p>Bidirectional characteristic supporting Read, Write, and Notify operations.</p>
+            <div class="code-box" style="margin:0;">
+              <code>abcdefab-1234-1234-1234-abcdefabcdef</code>
+            </div>
+          </div>
+
+          <div class="mode-card">
+            <h3 class="mode-name">Packet Structure</h3>
+            <p>UTF-8 formatted JSON telemetry payload emitted upon tactile rotation.</p>
+            <div class="code-box" style="margin:0;">
+              <code>{"mode":"Volume","value":"75","r":"255","g":"255","b":"155"}</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comprehensive Embedded Documentation Viewer -->
+    <section class="content-section" id="documentation">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Documentation Archive</span>
+          <h2>Engineering & Design Guides</h2>
+          <p>Read complete technical guides directly in your browser without leaving the page.</p>
+        </div>
+
+        <div class="docs-browser-card">
+          <div class="docs-nav-bar" role="tablist">
+            <button class="docs-tab-btn active" data-target="doc-overview" role="tab">Overview</button>
+            <button class="docs-tab-btn" data-target="doc-design" role="tab">Design Philosophy</button>
+            <button class="docs-tab-btn" data-target="doc-hardware" role="tab">Hardware Architecture</button>
+            <button class="docs-tab-btn" data-target="doc-modes" role="tab">Interaction Mechanics</button>
+            <button class="docs-tab-btn" data-target="doc-protocol" role="tab">BLE Protocol</button>
+            <button class="docs-tab-btn" data-target="doc-manual" role="tab">User Manual</button>
+          </div>
+
+          <div class="docs-content-view">
+            <!-- Article: Overview -->
+            <article class="docs-article active" id="doc-overview">
+              <h3>Tone System Overview</h3>
+              <p>
+                Tone is a tactile desktop sound controller engineered to transform computer audio management. Rather than interacting with digital mixers via mice or keyboard hotkeys, Tone introduces an analog, sculpted desktop peripheral that pairs over Bluetooth 5.1 Low Energy.
+              </p>
+              <h3>Subsystems</h3>
+              <ul>
+                <li><strong>ToneOS Firmware (`libs/ToneOS`)</strong>: C++ firmware running on ESP32, compiling cleanly under PlatformIO for both standard ESP32 DevKit and ESP32-C3 architectures.</li>
+                <li><strong>ToneTerminal Desktop Bridge (`libs/ToneTerminal`)</strong>: Python daemon that runs cross-platform on macOS (using AppleScript/CoreAudio) and Windows (using Core Audio Windows APIs via pycaw).</li>
+              </ul>
+              <h3>Quick Start (Desktop Client)</h3>
+              <div class="code-box">
+                <button class="copy-btn" data-code-target="codeTerminalStart">Copy</button>
+                <code id="codeTerminalStart">cd libs/ToneTerminal
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 main.py</code>
+              </div>
+            </article>
+
+            <!-- Article: Design Philosophy -->
+            <article class="docs-article" id="doc-design">
+              <h3>Design Philosophy & 5N1K Research</h3>
+              <p>
+                Tone was conceived as an industrial design graduation project by <strong>Sezin Sözden</strong> to address the sensory disconnection in modern digital audio tools.
+              </p>
+              <h3>The 5N1K Framework</h3>
+              <ul>
+                <li><strong>What?</strong> A tactile desktop equalizer with optical LED feedback.</li>
+                <li><strong>Why?</strong> Traditional sliders lack engagement; Tone bridges sound adjustments with physical haptic feedback.</li>
+                <li><strong>Who?</strong> Remote audio professionals, music creators, gamers, and audio enthusiasts.</li>
+                <li><strong>Where?</strong> Home studios, desktop listening environments, and creative workstations.</li>
+                <li><strong>When?</strong> Daily playback control, audio mastering, and immersive listening.</li>
+                <li><strong>How?</strong> An elliptical rotation disk with a central spherical mode switch and a 270° diffused RGB LED arc.</li>
+              </ul>
+            </article>
+
+            <!-- Article: Hardware Architecture -->
+            <article class="docs-article" id="doc-hardware">
+              <h3>Mechanical & Electrical Specifications</h3>
+              <ul>
+                <li><strong>Dimensions</strong>: 200 mm diameter × 45 mm height.</li>
+                <li><strong>Weight</strong>: 320 g with weighted anti-slip base.</li>
+                <li><strong>Materials</strong>: Polished aluminum control disk, matte ABS unibody housing, frosted polycarbonate diffuser.</li>
+                <li><strong>Power Circuit</strong>: 5V / 2A via USB Type-C, supporting battery operation and simultaneous pass-through charging.</li>
+              </ul>
+              <h3>PlatformIO Build Matrix</h3>
+              <div class="code-box">
+                <button class="copy-btn" data-code-target="codePioTargets">Copy</button>
+                <code id="codePioTargets"># Build for standard ESP32 (WROOM-32)
+pio run -d libs/ToneOS -e esp32dev
+
+# Build for ESP32-C3 (RISC-V)
+pio run -d libs/ToneOS -e esp32-c3-devkitm-1</code>
+              </div>
+            </article>
+
+            <!-- Article: Interaction Mechanics -->
+            <article class="docs-article" id="doc-modes">
+              <h3>Interaction Mechanics & LED Mapping</h3>
+              <p>
+                Tone uses continuous angular vector calculation (`atan2(y, x)`) to normalize thumbstick coordinates into an angle ($0^\circ - 360^\circ$). The software clamps the active adjustment sweep to $270^\circ$, dividing the active value across the 11-element LED arc.
+              </p>
+              <h3>LED Proportional Illumination</h3>
+              <p>
+                Active LED count is computed in real time:
+                <code>activePixels = round((currentValue / 100) * 11)</code>.
+                When switching modes, all active LEDs update immediately to the target profile's configured RGB color with zero latency.
+              </p>
+            </article>
+
+            <!-- Article: BLE Protocol -->
+            <article class="docs-article" id="doc-protocol">
+              <h3>Bluetooth Low Energy Handshake Specification</h3>
+              <p>
+                Upon establishing connection, ToneTerminal executes an automated handshake sequence:
+              </p>
+              <ul>
+                <li>Host connects to <code>Tone Equalizer</code> via BleakClient.</li>
+                <li>Host reads local OS mixer volume and writes GATT packet <code>vol:&lt;percent&gt;</code> to device.</li>
+                <li>Tone firmware updates its internal Volume state and illuminates the LED arc.</li>
+                <li>Host subscribes to notifications via descriptor <code>0x2902</code>.</li>
+                <li>Physical dial movements emit JSON packets to the host to modulate master audio gain.</li>
+              </ul>
+            </article>
+
+            <!-- Article: User Manual -->
+            <article class="docs-article" id="doc-manual">
+              <h3>User Operation & Care Guide</h3>
+              <h3>Setup & Pairing</h3>
+              <ul>
+                <li>Hold the power button on the base for 3 seconds until the LED ring pulses.</li>
+                <li>Ensure Bluetooth is enabled on your host computer.</li>
+                <li>Launch <code>python3 libs/ToneTerminal/main.py</code> to connect automatically.</li>
+              </ul>
+              <h3>Maintenance Instructions</h3>
+              <ul>
+                <li>Disconnect power before cleaning.</li>
+                <li>Wipe gently using a dry, clean microfiber cloth.</li>
+                <li>Do not use chemical solvents, bleach, or abrasive liquid cleaners.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Colophon & Attribution -->
+    <section class="content-section" id="credits">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Project Colophon</span>
+          <h2>Design & Engineering Team</h2>
+          <p>Created through interdisciplinary collaboration between industrial design and embedded software engineering.</p>
+        </div>
+
+        <div class="colophon-grid">
+          <div class="credit-card">
+            <span class="credit-role">Industrial Design & Product Concept</span>
+            <h3 class="credit-name">Sezin Sözden</h3>
+            <p class="credit-bio">
+              Industrial designer responsible for Tone's physical form factor, 5N1K user research, ergonomic studies, materials palette, brand identity, and graduation project thesis.
+            </p>
+            <div class="credit-links">
+              <a href="mailto:sezinsozden@gmail.com" class="credit-link">sezinsozden@gmail.com</a>
+              <a href="https://sezinsozden.my.canva.site/portfolio" target="_blank" rel="noopener noreferrer" class="credit-link">Design Portfolio</a>
+            </div>
+          </div>
+
+          <div class="credit-card">
+            <span class="credit-role">Software & Firmware Architecture</span>
+            <h3 class="credit-name">Ata Can Yaymacı</h3>
+            <p class="credit-bio">
+              Computer engineer responsible for ToneOS ESP32 embedded C++ firmware, deadzone filtering algorithms, NeoPixel optical drivers, BLE GATT server, and ToneTerminal cross-platform desktop daemon.
+            </p>
+            <div class="credit-links">
+              <a href="https://github.com/AtaCanYmc" target="_blank" rel="noopener noreferrer" class="credit-link">GitHub Profile</a>
+              <a href="mailto:atacanymc@gmail.com" class="credit-link">atacanymc@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="section-container">
+      <p>Tone Project &copy; 2026. Released under the MIT License.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
