@@ -98,31 +98,36 @@ ToneProject/
 ├── assets/
 │   ├── tone-logo.svg           # High-resolution vector brand mark
 │   ├── tone-logo.png           # 800x800 rasterized square logo
+│   ├── tone-technical-drawing.png # 1600x1129 Sheet DM-495 orthographic CAD drawing
 │   └── pdf/                    # Source graduation project artifacts
+│       ├── tone-technical-design.pdf # Sheet DM-495 engineering drawing (Scale 1:1)
 │       ├── tone-user-manual.pdf
 │       ├── tone-booklet.pdf
 │       ├── tone-project-folder.pdf
 │       └── tone-board.pdf
 ├── docs/                       # Technical and design documentation
-│   ├── index.md                # Documentation portal
+│   ├── index.html              # Bespoke interactive web simulator & docs portal
+│   ├── style.css               # Tone dark studio design system
+│   ├── app.js                  # Interactive hardware simulator engine
+│   ├── index.md                # Documentation portal markdown
 │   ├── design-philosophy.md    # 5N1K research and design background
-│   ├── hardware-architecture.md# Exploded assembly and pinouts
+│   ├── hardware-architecture.md# Exploded assembly, CAD specs and pinouts
 │   ├── interaction-and-modes.md# Gesture mechanics and LED logic
 │   ├── bluetooth-protocol.md   # BLE GATT architecture & packet format
 │   └── user-manual.md          # Complete operation and cleaning guide
 ├── libs/
-│   ├── ToneOS/                 # ESP32 C++ firmware
-│   │   ├── toneOS.ino          # Arduino entry point and setup routines
-│   │   ├── ToneController.cpp  # Mode state machine and dispatch engine
-│   │   ├── JoyController.cpp   # ADC deadzone filtering and trigonometry
-│   │   ├── PixelController.cpp # WS2812B illumination and arc animation
-│   │   └── BluetoothController.cpp # BLE GATT server and advertising
+│   ├── ToneOS/                 # ESP32 C++ firmware (PlatformIO)
+│   │   ├── platformio.ini      # Dual ESP32 & ESP32-C3 build environments
+│   │   ├── include/            # C++ headers (ToneController, Bluetooth, etc.)
+│   │   └── src/                # Implementation & main.cpp entry point
 │   └── ToneTerminal/           # Python desktop companion client
 │       ├── main.py             # Discovery loop and client runtime
 │       ├── bluetooth_utils.py  # Bleak GATT client and notification handler
 │       ├── utils.py            # macOS and Windows system audio bindings
-│       ├── requirements.txt    # Python dependencies
+│       ├── requirements.txt    # Platform-aware Python dependencies
+│       ├── tests/              # 13 unit tests for volume and BLE parsing
 │       └── .env.example        # Environment variable template
+├── Makefile                    # Automation commands for build, test, docs & clean
 └── README.md
 ```
 

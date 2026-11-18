@@ -763,6 +763,67 @@ p {
   color: #38bdf8;
 }
 
+/* Technical Drawing Showcase */
+.tech-drawing-container {
+  margin-block-start: 2.5rem;
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.tech-drawing-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tech-drawing-img {
+  inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  transition: transform var(--transition-fast);
+}
+
+.tech-drawing-img:hover {
+  transform: scale(1.01);
+}
+
+.tech-drawing-caption {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.dim-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.dim-pill {
+  padding-inline: 0.85rem;
+  padding-block: 0.4rem;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+.dim-pill strong {
+  color: #38bdf8;
+}
+
 /* ==========================================================================
    Documentation Tabbed Browser
    ========================================================================== */

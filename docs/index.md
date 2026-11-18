@@ -42,4 +42,4 @@ flowchart LR
 
 - **Industrial Design & Concept**: **Sezin Sözden** ([sezinsozden@gmail.com](mailto:sezinsozden@gmail.com) · [Portfolio](https://sezinsozden.my.canva.site/portfolio)) — Graduation Project
 - **Software & Firmware Engineering**: **Ata Can Yaymacı** ([@AtaCanYmc](https://github.com/AtaCanYmc) · [ToneProject](https://github.com/AtaCanYmc/ToneProject))
-- **Source Documents**: [User Manual](../assets/pdf/tone-user-manual.pdf), [Project Booklet](../assets/pdf/tone-booklet.pdf), [Project Folder](../assets/pdf/tone-project-folder.pdf), [Board Poster](../assets/pdf/tone-board.pdf)
+- **Source Documents**: [Technical Drawing DM-495](../assets/pdf/tone-technical-design.pdf), [User Manual](../assets/pdf/tone-user-manual.pdf), [Project Booklet](../assets/pdf/tone-booklet.pdf), [Project Folder](../assets/pdf/tone-project-folder.pdf), [Board Poster](../assets/pdf/tone-board.pdf)
