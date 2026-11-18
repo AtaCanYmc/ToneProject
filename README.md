@@ -6,7 +6,8 @@
 
 **Tactile Desktop Equalizer and Audio Controller**
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/AtaCanYmc/ToneProject/actions/workflows/ci.yml/badge.svg)](https://github.com/AtaCanYmc/ToneProject/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-ESP32%20%7C%20macOS%20%7C%20Windows-blue)](docs/hardware-architecture.md)
 [![C++](https://img.shields.io/badge/C%2B%2B-14-00599C?logo=c%2B%2B)](libs/ToneOS)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python)](libs/ToneTerminal)
@@ -204,4 +205,4 @@ Comprehensive engineering and design specifications are maintained in the [`docs
 
 - **Industrial Design & Product Concept**: **Sezin Sözden** ([sezinsozden@gmail.com](mailto:sezinsozden@gmail.com) · [Portfolio](https://sezinsozden.my.canva.site/portfolio))
 - **Software & Firmware Architecture**: **Ata Can Yaymacı** ([@AtaCanYmc](https://github.com/AtaCanYmc) · [atacanymc@gmail.com](mailto:atacanymc@gmail.com))
-- **Source Code License**: [MIT License](LICENSE) (c) 2026 AtaCanYmc
+- **Source Code License**: [MIT License](https://opensource.org/licenses/MIT) (c) 2026 AtaCanYmc

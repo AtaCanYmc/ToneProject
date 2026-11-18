@@ -1,0 +1,138 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ----------------------------------------------------------------------------
+  # Job 1: ToneTerminal Python Test Suite & Syntax Validation
+  # ----------------------------------------------------------------------------
+  test-terminal:
+    name: ToneTerminal Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+          cache-dependency-path: libs/ToneTerminal/requirements.txt
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r libs/ToneTerminal/requirements.txt
+
+      - name: Verify Python Script Syntax
+        run: |
+          python -m py_compile libs/ToneTerminal/utils.py
+          python -m py_compile libs/ToneTerminal/bluetooth_utils.py
+          python -m py_compile libs/ToneTerminal/main.py
+
+      - name: Run Unit Test Suite
+        run: |
+          python -m unittest discover -v libs/ToneTerminal/tests
+
+  # ----------------------------------------------------------------------------
+  # Job 2: ToneOS ESP32 Firmware Compilation (PlatformIO)
+  # ----------------------------------------------------------------------------
+  build-firmware:
+    name: ToneOS Firmware Build (PlatformIO)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python for PlatformIO
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install PlatformIO Core
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U platformio
+
+      - name: Cache PlatformIO Core Packages & Platforms
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.platformio
+            libs/ToneOS/.pio
+          key: ${{ runner.os }}-pio-${{ hashFiles('libs/ToneOS/platformio.ini') }}
+          restore-keys: |
+            ${{ runner.os }}-pio-
+
+      - name: Compile ESP32 DevKit (WROOM) Target
+        run: |
+          pio run -d libs/ToneOS -e esp32dev
+
+      - name: Compile ESP32-C3 (RISC-V) Target
+        run: |
+          pio run -d libs/ToneOS -e esp32-c3-devkitm-1
+
+  # ----------------------------------------------------------------------------
+  # Job 3: Documentation & Relative Link Integrity
+  # ----------------------------------------------------------------------------
+  validate-docs:
+    name: Documentation & Link Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate Internal Markdown Links
+        run: |
+          python3 -c '
+          import re, glob, os
+
+          def check_file(f):
+              content = open(f, encoding="utf-8").read()
+              content = re.sub(r"```[\s\S]*?```", "", content)
+              content = re.sub(r"`[^`]*`", "", content)
+              links = re.findall(r"\[.*?\]\((?!https?://|mailto:)(.*?)(?:#.*)?\)", content)
+              broken = []
+              for link in links:
+                  link = link.strip()
+                  if not link or link.startswith("#"): continue
+                  target = os.path.normpath(os.path.join(os.path.dirname(f), link))
+                  if not os.path.exists(target):
+                      broken.append(f"{f} -> {link} (resolved: {target})")
+              return broken
+
+          all_broken = []
+          for f in glob.glob("**/*.md", recursive=True):
+              if ".pio" in f or "venv" in f: continue
+              all_broken.extend(check_file(f))
+
+          if all_broken:
+              print("Error: Broken internal documentation links detected:")
+              for b in all_broken:
+                  print("  -", b)
+              exit(1)
+          print("Internal documentation links verified successfully.")
+          '
