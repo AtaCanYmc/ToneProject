@@ -129,29 +129,26 @@ ToneProject/
 
 ## Quick Start
 
-### 1. Firmware Setup (ToneOS)
+### 1. Firmware Setup (ToneOS with PlatformIO)
 
-Compile and flash the firmware using the Arduino IDE or CLI:
+Compile and flash the firmware using [PlatformIO](https://platformio.org/):
 
-1. Open `libs/ToneOS/toneOS.ino` in the Arduino IDE.
-2. Select target board **ESP32 Dev Module** (or your specific ESP32 variant).
-3. Ensure required Arduino libraries are installed:
-   - `Adafruit NeoPixel`
-   - Built-in ESP32 `BLEDevice` framework
-4. Verify GPIO pin assignments at the top of `toneOS.ino`:
-   ```cpp
-   #define NUMPIXELS 11        // Number of NeoPixel LEDs in arc
-   #define PIXELPIN  10        // GPIO10 - NeoPixel Data
-   #define XPIN      3         // GPIO3  - Joystick X (ADC1)
-   #define YPIN      4         // GPIO4  - Joystick Y (ADC1)
-   #define SWPIN     5         // GPIO5  - Joystick Push Switch
-   ```
-5. Connect your ESP32 via USB and upload the sketch.
-6. Open the Serial Monitor at `115200 baud` to verify boot output:
-   ```text
-   ToneOS started
-   [BLE] - Bluetooth device is now discoverable.
-   ```
+```bash
+# Navigate to the firmware directory
+cd libs/ToneOS
+
+# Build for default target (ESP32 DevKit)
+pio run
+
+# Build for ESP32-C3
+pio run -e esp32-c3-devkitm-1
+
+# Upload to connected board
+pio run --target upload
+
+# Open serial monitor
+pio device monitor -b 115200
+```
 
 ### 2. Desktop Companion (ToneTerminal)
 

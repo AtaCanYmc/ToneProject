@@ -9,6 +9,11 @@ dist/
 *.bin
 *.hex
 
+# PlatformIO build artifacts
+.pio/
+.pioenvs/
+.piolibdeps/
+
 # ESP32 and Arduino build cache
 .arduino15/
 *.ino.cpp
