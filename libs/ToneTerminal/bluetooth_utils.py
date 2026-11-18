@@ -2,14 +2,26 @@ import asyncio
 import os
 import platform
 import json
-from dotenv import load_dotenv
-from bleak import (
-    BleakScanner,
-    BLEDevice,
-    BleakClient,
-    BleakGATTServiceCollection,
-    BleakGATTCharacteristic,
-)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
+try:
+    from bleak import (
+        BleakScanner,
+        BLEDevice,
+        BleakClient,
+        BleakGATTServiceCollection,
+        BleakGATTCharacteristic,
+    )
+except ImportError:
+    BleakScanner = None
+    BLEDevice = None
+    BleakClient = None
+    BleakGATTServiceCollection = None
+    BleakGATTCharacteristic = None
 
 from utils import (
     log,
@@ -17,8 +29,6 @@ from utils import (
     set_volume_windows,
     get_volume_data_as_int,
 )
-
-load_dotenv()
 
 tone_device: BLEDevice = None
 tone_client: BleakClient = None
@@ -103,11 +113,15 @@ def handle_notification(sender: BleakGATTCharacteristic, data: bytearray):
             return
 
         volume_val = max(0, min(100, int(raw_val)))
+        mode_name = json_data.get("mode", "Volume")
 
-        if operating_system == "Darwin":
-            set_volume_mac(volume_val)
-        elif operating_system in ("Windows", "nt"):
-            set_volume_windows(volume_val)
+        if mode_name == "Volume":
+            if operating_system == "Darwin":
+                set_volume_mac(volume_val)
+            elif operating_system in ("Windows", "nt"):
+                set_volume_windows(volume_val)
+        else:
+            log(f"Equalizer profile active [{mode_name}]: {volume_val}%", "EQ")
 
     except (ValueError, TypeError, json.JSONDecodeError) as e:
         log(f"Error parsing BLE notification: {e}", "WARNING")
