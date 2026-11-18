@@ -24,6 +24,7 @@
         <a href="#gallery" class="nav-link">Design Gallery</a>
         <a href="#protocol" class="nav-link">BLE Protocol</a>
         <a href="#documentation" class="nav-link">Documentation</a>
+        <a href="#pdf-archive" class="nav-link">PDFs</a>
       </nav>
       <div class="header-actions">
         <a href="https://github.com/AtaCanYmc/ToneProject" target="_blank" rel="noopener noreferrer" class="btn-github">
@@ -286,7 +287,12 @@ pio run -e esp32-c3-devkitm-1</code>
           <figure class="tech-drawing-figure">
             <img src="assets/tone-technical-drawing.png" alt="Tone Technical Drawing Sheet DM-495 (Orthographic Projections & Cross-Section)" class="tech-drawing-img" loading="lazy">
             <figcaption class="tech-drawing-caption">
-              <strong>Sheet DM-495 (Scale 1:1)</strong> · Orthographic Projections & Section A-A' · Industrial Design by Sezin Sözden (23.05.2025)
+              <div><strong>Sheet DM-495 (Scale 1:1)</strong> · Orthographic Projections & Section A-A' · Industrial Design by Sezin Sözden (23.05.2025)</div>
+              <div style="margin-block-start: 0.5rem;">
+                <a href="assets/pdf/tone-technical-design.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf-action" style="display:inline-flex; width:auto; padding: 0.35rem 0.75rem; font-size: 0.75rem;">
+                  Open Original Sheet DM-495 PDF &rarr;
+                </a>
+              </div>
             </figcaption>
           </figure>
           <div class="dim-pills-row">
@@ -470,6 +476,11 @@ source venv/bin/activate
 pip install -r requirements.txt
 python3 main.py</code>
               </div>
+              <div class="doc-pdf-link">
+                <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">Related Documents:</span>
+                <a href="assets/pdf/tone-booklet.pdf" target="_blank" rel="noopener noreferrer" class="pdf-link-btn">📕 Design Booklet (PDF · 17.9 MB)</a>
+                <a href="assets/pdf/tone-technical-design.pdf" target="_blank" rel="noopener noreferrer" class="pdf-link-btn">📐 CAD Blueprint (PDF · 1.2 MB)</a>
+              </div>
             </article>
 
             <!-- Article: Design Philosophy -->
@@ -487,6 +498,12 @@ python3 main.py</code>
                 <li><strong>When?</strong> Daily playback control, audio mastering, and immersive listening.</li>
                 <li><strong>How?</strong> An elliptical rotation disk with a central spherical mode switch and a 270° diffused RGB LED arc.</li>
               </ul>
+              <div class="doc-pdf-link">
+                <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">Source Research:</span>
+                <a href="assets/pdf/tone-booklet.pdf" target="_blank" rel="noopener noreferrer" class="pdf-link-btn">📕 Tone Design Booklet (PDF · 17.9 MB)</a>
+                <a href="assets/pdf/tone-project-folder.pdf" target="_blank" rel="noopener noreferrer" class="pdf-link-btn">📁 Complete Project Dossier (PDF · 18.6 MB)</a>
+                <a href="assets/pdf/tone-board.pdf" target="_blank" rel="noopener noreferrer" class="pdf-link-btn">📋 Exhibition Presentation Board (PDF · 11.0 MB)</a>
+              </div>
             </article>
 
             <!-- Article: Hardware Architecture -->
@@ -508,6 +525,10 @@ pio run -d libs/ToneOS -e esp32dev
 
 # Build for ESP32-C3 (RISC-V)
 pio run -d libs/ToneOS -e esp32-c3-devkitm-1</code>
+              </div>
+              <div class="doc-pdf-link">
+                <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">Engineering Blueprint:</span>
+                <a href="assets/pdf/tone-technical-design.pdf" target="_blank" rel="noopener noreferrer" class="pdf-link-btn">📐 Sheet DM-495 Technical CAD PDF (Scale 1:1 · 1.2 MB)</a>
               </div>
             </article>
 
@@ -555,8 +576,123 @@ pio run -d libs/ToneOS -e esp32-c3-devkitm-1</code>
                 <li>Wipe gently using a dry, clean microfiber cloth.</li>
                 <li>Do not use chemical solvents, bleach, or abrasive liquid cleaners.</li>
               </ul>
+              <div class="doc-pdf-link">
+                <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">User Documentation:</span>
+                <a href="assets/pdf/tone-user-manual.pdf" target="_blank" rel="noopener noreferrer" class="pdf-link-btn">📖 Tone Official User Manual (PDF · 4.6 MB)</a>
+              </div>
             </article>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source PDF Archive & Documents -->
+    <section class="content-section" id="pdf-archive">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Source Documentation & Downloads</span>
+          <h2>Original PDF Archive</h2>
+          <p>Access and download all original thesis documents, engineering drawings, booklets, and presentation boards created during the Tone project.</p>
+        </div>
+
+        <div class="pdf-grid">
+          <!-- Card 1: CAD Technical Blueprint -->
+          <article class="pdf-card">
+            <div class="pdf-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span class="pdf-badge">CAD · Scale 1:1</span>
+            </div>
+            <h3 class="pdf-card-title">Technical Design CAD (Sheet DM-495)</h3>
+            <p class="pdf-card-desc">Detailed 1:1 orthographic drawing, cross-sections, radius dimensions, wall thicknesses, and USB-C chassis cutouts.</p>
+            <div class="pdf-meta">
+              <span class="pdf-filesize">1.2 MB · PDF</span>
+              <a href="assets/pdf/tone-technical-design.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf-action">
+                View PDF <span>&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 2: User Manual -->
+          <article class="pdf-card">
+            <div class="pdf-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              <span class="pdf-badge">User Guide</span>
+            </div>
+            <h3 class="pdf-card-title">Tone User Manual</h3>
+            <p class="pdf-card-desc">Complete user onboarding manual covering ergonomic hand placement, pairing steps, status indicators, and maintenance guidelines.</p>
+            <div class="pdf-meta">
+              <span class="pdf-filesize">4.6 MB · PDF</span>
+              <a href="assets/pdf/tone-user-manual.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf-action">
+                View PDF <span>&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 3: Project Booklet -->
+          <article class="pdf-card">
+            <div class="pdf-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <span class="pdf-badge">Research & Concept</span>
+            </div>
+            <h3 class="pdf-card-title">Tone Project Booklet</h3>
+            <p class="pdf-card-desc">Comprehensive design thesis booklet including 5N1K user research, interaction sketches, acoustic mapping, and form exploration.</p>
+            <div class="pdf-meta">
+              <span class="pdf-filesize">17.9 MB · PDF</span>
+              <a href="assets/pdf/tone-booklet.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf-action">
+                View PDF <span>&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 4: Project Folder / Dossier -->
+          <article class="pdf-card">
+            <div class="pdf-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span class="pdf-badge">Full Portfolio</span>
+            </div>
+            <h3 class="pdf-card-title">Comprehensive Project Dossier</h3>
+            <p class="pdf-card-desc">The full graduation portfolio folder containing deep-dive ergonomic studies, color/material/finish (CMF) palettes, and user journey maps.</p>
+            <div class="pdf-meta">
+              <span class="pdf-filesize">18.6 MB · PDF</span>
+              <a href="assets/pdf/tone-project-folder.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf-action">
+                View PDF <span>&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 5: Exhibition Board -->
+          <article class="pdf-card">
+            <div class="pdf-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <span class="pdf-badge">Exhibition Board</span>
+            </div>
+            <h3 class="pdf-card-title">Graduation Exhibition Board</h3>
+            <p class="pdf-card-desc">Large-format graduation showcase presentation poster featuring high-definition exploded assemblies and aesthetic studio renders.</p>
+            <div class="pdf-meta">
+              <span class="pdf-filesize">11.0 MB · PDF</span>
+              <a href="assets/pdf/tone-board.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf-action">
+                View PDF <span>&rarr;</span>
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -593,11 +729,19 @@ pio run -d libs/ToneOS -e esp32-c3-devkitm-1</code>
           </div>
 
           <div class="credit-card">
-            <span class="credit-role">Software & Firmware Architecture</span>
-            <h3 class="credit-name">Ata Can Yaymacı</h3>
+            <div class="credit-header-with-avatar">
+              <img src="assets/renders/developer-atacan-yaymaci.jpg" alt="Ata Can Yaymacı - Software & Firmware Engineer" class="credit-avatar">
+              <div>
+                <span class="credit-role">Software & Firmware Architecture</span>
+                <h3 class="credit-name">Ata Can Yaymacı</h3>
+              </div>
+            </div>
             <p class="credit-bio">
               Computer engineer responsible for ToneOS ESP32 embedded C++ firmware, deadzone filtering algorithms, NeoPixel optical drivers, BLE GATT server, and ToneTerminal cross-platform desktop daemon.
             </p>
+            <div class="academic-badge" style="margin: 0;">
+              <span>Embedded C++ · Python · Bleak · CoreAudio · PlatformIO</span>
+            </div>
             <div class="credit-links">
               <a href="https://github.com/AtaCanYmc" target="_blank" rel="noopener noreferrer" class="credit-link">GitHub Profile</a>
               <a href="mailto:atacanymc@gmail.com" class="credit-link">atacanymc@gmail.com</a>

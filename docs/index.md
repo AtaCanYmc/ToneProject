@@ -38,8 +38,23 @@ flowchart LR
 
 ---
 
+## Source PDF Documents & Downloads
+
+All original project documents from the graduation thesis and engineering design:
+
+| Document | Format | Description | Direct Link |
+| :--- | :---: | :--- | :--- |
+| **Technical Design CAD (Sheet DM-495)** | PDF (1.2 MB) | Orthographic 1:1 blueprint, sections, tolerances, and USB-C port cutout | [View PDF](assets/pdf/tone-technical-design.pdf) |
+| **Tone User Manual** | PDF (4.6 MB) | User onboarding, pairing guide, gesture operations, and care instructions | [View PDF](assets/pdf/tone-user-manual.pdf) |
+| **Tone Project Booklet** | PDF (17.9 MB) | 5N1K user research, interaction mechanics, and form exploration studies | [View PDF](assets/pdf/tone-booklet.pdf) |
+| **Comprehensive Project Dossier** | PDF (18.6 MB) | Full graduation portfolio folder, sketches, mockups, and CMF palettes | [View PDF](assets/pdf/tone-project-folder.pdf) |
+| **Graduation Exhibition Board** | PDF (11.0 MB) | Large-format presentation board with high-res exploded assemblies | [View PDF](assets/pdf/tone-board.pdf) |
+
+---
+
 ## References & Credits
 
-- **Industrial Design & Concept**: **Sezin Sözden** ([sezinsozden@gmail.com](mailto:sezinsozden@gmail.com) · [Portfolio](https://sezinsozden.my.canva.site/portfolio)) — Graduation Project
+- **Industrial Design & Concept**: **Sezin Sözden** ([sezinsozden@gmail.com](mailto:sezinsozden@gmail.com) · [Graduation Catalog](https://www.ffadgrad.ieu.edu.tr/id-projects/sezin-sozden) · [Portfolio](https://sezinsozden.my.canva.site/portfolio))
+  - *Graduation Project 2025* · İzmir University of Economics (FFAD)
+  - *Advisors*: Asst. Prof. Can ÖZCAN, Lect. Özgür Deniz ÇETİN, Res. Asst. Anıl Dinç DEMİRBİLEK
 - **Software & Firmware Engineering**: **Ata Can Yaymacı** ([@AtaCanYmc](https://github.com/AtaCanYmc) · [ToneProject](https://github.com/AtaCanYmc/ToneProject))
-- **Source Documents**: [Technical Drawing DM-495](../assets/pdf/tone-technical-design.pdf), [User Manual](../assets/pdf/tone-user-manual.pdf), [Project Booklet](../assets/pdf/tone-booklet.pdf), [Project Folder](../assets/pdf/tone-project-folder.pdf), [Board Poster](../assets/pdf/tone-board.pdf)

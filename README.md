@@ -109,7 +109,8 @@ ToneProject/
 │   │   ├── tone-slide-rotate.jpg
 │   │   ├── tone-app-ringbutton.jpg
 │   │   ├── tone-dual-led-variants.jpg
-│   │   └── designer-sezin-sozden.jpg
+│   │   ├── designer-sezin-sozden.jpg
+│   │   └── developer-atacan-yaymaci.jpg
 │   └── pdf/                    # Source graduation project artifacts
 │       ├── tone-technical-design.pdf # Sheet DM-495 engineering drawing (Scale 1:1)
 │       ├── tone-user-manual.pdf

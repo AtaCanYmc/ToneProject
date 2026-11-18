@@ -1122,6 +1122,135 @@ p {
 }
 
 /* ==========================================================================
+   PDF Archive & Source Document Downloads
+   ========================================================================== */
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pdf-card {
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.pdf-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.pdf-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: 0.25rem;
+  color: #38bdf8;
+}
+
+.pdf-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+.pdf-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.pdf-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-block-end: 0.5rem;
+}
+
+.pdf-meta {
+  margin-block-start: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block-start: 1rem;
+  border-block-start: 1px solid var(--border-subtle);
+  font-size: 0.8rem;
+}
+
+.pdf-filesize {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.btn-pdf-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-pdf-action:hover {
+  background: var(--bg-surface-3);
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+/* Contextual PDF links inside documentation tabs */
+.doc-pdf-link {
+  margin-block-start: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-surface-2);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.pdf-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: #38bdf8;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.pdf-link-btn:hover {
+  background: var(--bg-surface-3);
+  border-color: #38bdf8;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 .site-footer {
